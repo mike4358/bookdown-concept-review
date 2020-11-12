@@ -1,0 +1,21 @@
+# Interview {#interview}
+
+Go thru resume line by line & have example(s) for each
+
+Techniques:
+- Start with n=1. Point is to show underlying idea
+- Cup problem 
+- burning rope as timer problem
+- Ball weighing/brooklyn nine-nine (resample trick)
+- Symmetry
+- Sum of integers & sum of squared integers
+  - Glass ball floor example
+- Pigeon Hole Principle
+  - Ants on square (break up into smaller to show that one has at least 3 ants)
+  - Coins (sum uniq draws from each bag)
+- Modular Arithmetic
+- Induction
+  - $P(n)$ implies $P(n+1$
+  - Finish brain teasers
+- Proof by contradiction
+  - Irrationality of $\sqrt{2}$: $a/b = \sqrt{2}$, square both sides...

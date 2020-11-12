@@ -1,0 +1,19 @@
+# Linear Algebra {#linalg}
+
+- Angle: $\cos{\theta}=\frac{x^Ty}{\|x\|\|y\|}$
+- Orthogonal is when dot product is 0
+- Corr is cosine of angle between them in Euclidean
+- QR Decomposition
+- Determinants
+- Characteristic equation of matrix 
+- Eigenvalues & Eigenvectors: needs square, PCA
+- Positive semidefinite/positive definite
+- LU decomp
+- Cholesky decomp
+  - Application for monte carlo simulation for correlated random normal
+- Symmetric Matrix
+- L1 l2 norms
+- Singular Value Decomposition
+- Basis
+- Invertible Matrix Theorem
+- Gram-schmidt orthonormalization

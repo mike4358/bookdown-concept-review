@@ -1,0 +1,20 @@
+# Finance {#finance}
+
+- VaR (historical, analytical, marginal, component, conditional?)
+- Put-call parity: $c+K^{-r\tau}=p+S-D$
+  - $c-p=S-K^{-r\tau}$
+- Black-Scholes PDE & its derivation
+  - Discounted Fynman-kac
+- Black-Sholes formula & its derivation
+- Trend signal:
+  - Prove relationship between half-life, window, and speed/alpha
+  - Difference between fixed and growing window
+  - Know weights to recursion both ways for EWMA
+    - $B_t=X_t+\alpha B_{t-1}-a^WX_t$
+    - General MA recursion
+  - Geometric series for weights normalization
+- FX Value - GSDEER model review, other specifications (see SG paper)
+  - Fixed effect pooled panel regressions split by DM & EM
+    - Productivity, terms of trade
+    - Looked into adding for EM: VIX, CA, IIP
+- Transaction Cost examples

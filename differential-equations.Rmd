@@ -1,0 +1,9 @@
+# Differential Equations {#diffeq}
+
+- Separable
+  - Change of variable
+- First-order linear
+- Homogeneous linear
+- Nonhomogeneous linear
+- Characteristic equation of function
+- Ansatz

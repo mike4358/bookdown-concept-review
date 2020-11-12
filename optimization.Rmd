@@ -1,0 +1,18 @@
+# Optimization {#opt}
+
+- Dynamic Programming
+  - Integer Knapsack, Bellman, optimal execution, recursion
+- Linear Programming
+  - Simplex method
+  - Interior Point
+- Integer programming
+  - Branch and bound
+- Duality
+- Quadratic Programming
+  - Lasso
+  - Second order cone
+- Non-linear
+  - Gradient based
+  - Hessian based
+  - KKT point
+

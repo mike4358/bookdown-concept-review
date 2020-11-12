@@ -1,0 +1,21 @@
+# Data Analysis {#da}
+
+- AR
+- MA
+- ARCH, GARCH, I-GARCH
+  - With examples going from daily prices to fitted models
+  - Why exponential weight relationship?
+- MLE
+- Fisher
+- AIC/BIC
+- Stationarity
+- Multicollinearity (& relation to Lin alg), what does it do to coefficients & their t-stats?
+- F-Test
+- Logistic Regression
+  - Drop in Deviance
+- Fixed effects
+- Bootstrapping - run multiple times to get different cuts & use the variability to estimate 
+- Pairs trading, cointegration
+- For univariate, does R2 = covariance?
+- Why run levels-levels, ln(levels)-ln(levels), etc.? econometrics
+- Gibbs sampler

@@ -1,3 +1,3 @@
-# Methods
+# Term Structure {#term}
 
 We describe our methods in this chapter.

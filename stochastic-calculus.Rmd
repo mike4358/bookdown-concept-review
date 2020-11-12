@@ -1,0 +1,9 @@
+# Stochastic Calculus {#stoch}
+
+- Brownian motion & its properties
+  - Example: $Y(t)=W(t)^2-t$
+  - Exponential martingale
+- Ito’s Lemma
+- Martingale process: drift term = 0
+- Ornstein-Uhlenbeck process: how to get its solution
+  - see diff eq?

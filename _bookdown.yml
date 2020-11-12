@@ -1,5 +1,20 @@
-book_filename: "bookdown-demo"
+book_filename: "concept-review"
 language:
   ui:
-    chapter_name: "Chapter "
+    chapter_name: "Concept "
 delete_merged_file: true
+rmd_files: ["index.Rmd",
+"example-code.Rmd",
+"calculus.Rmd",
+"differential-equations.Rmd",
+"linear-algebra.Rmd",
+"probability-theory.Rmd",
+"optimization.Rmd",
+"simulation.Rmd",
+"data-analysis.Rmd",
+"stochastic-calculus.Rmd",
+"programming.Rmd",
+"machine-learning.Rmd",
+"finance.Rmd",
+"interview.Rmd",
+"references.Rmd"]

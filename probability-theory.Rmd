@@ -1,0 +1,27 @@
+# Probability Theory {#prob}
+
+- Complement probability
+- MGF: $M(t)=E[e^{tX}]=\int_{-\infty}^{\infty}e^{tx}f(x)dx$
+- Common distributions (expecation, variance) & MGF derivations
+  - Vs. characteristic function https://en.wikipedia.org/wiki/Moment-generating_function
+  - Normal distribution: PDF: $f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$ MGF: $e^{ut+\frac{\sigma^2t^2}{2}}$ 
+  - Chi Squared 
+- Combinatorics
+  - Permutation: $\frac{n!}{n_1!n_2!...n_r!}$
+  - Choose formula: $\binom{n}{r} = \frac{n!}{r!(n-r)!}$
+  - Binomial theorem: $(x+y)^n=\sum_{k=o}^{n}\binom{n}{k}x^ky^{n-k}$
+    - proof?
+  - inclusion/exclusion principle
+  - Stars & bars, grid walking
+- Central limit theorem
+- Law of large numbers (and its uses)
+- Bayes formula
+  - Application to Gibbs Sampler in Data Analysis
+- Gambler’s ruin (also as state)
+- Dice game: continuation if 4,5,6. Same principle of states like cave question
+- Look for games to start over again
+- Wald’s Equality
+- Linearity in independent variances, non-indep corr triangle
+  - Diff between 0 corr and independence
+  - Relation to Linear Algebra
+- Variance & Covariance formulas (E[XY]-E[X]E[Y], etc.)

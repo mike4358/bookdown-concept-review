@@ -1,0 +1,8 @@
+# Simluation {#sim}
+
+- Acceptance/rejection algo
+- Antithetic variable
+- Moment matching
+- Control variates
+- Importance sampling
+- Copula - what is its use

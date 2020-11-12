@@ -1,0 +1,40 @@
+# Programming {#prog}
+
+- Leetcode, hackerrank, ML python courses
+- C++
+  - By ref vs by val
+  - Pointers
+  - Templates
+  - Classes
+  - Mutex & parallelizing computation
+  - Rebuild examples in Xcode & VS Code
+- Python
+  - Decorator
+  - Generator
+  - Jupyter
+  - Immutable
+  - Range vs. xrange
+  - Re-write EWMA in python
+  - Pandas
+  - NumPy
+  - SciPy
+  - tensorflow
+  - Importing, namespaces
+- R
+  - packrat
+- Algorithmic Complexity (maybe make it's own chapter)
+  - Big-O notation
+  - $\Omega$ notation
+  - $\Theta$ notation
+  - Master theorem
+  - Horner’s algorithm: rewrite sum as recursion
+  - Moving average: reuse previously computed average
+- Sorting Algorithms
+  - Get best, worst, average, complexity, etc.
+  - Insertion sort: inject new element one at a time. $W(n)=\Omega(\sum_{i=1}^{n} i)=\Omega(n^2)$
+  - Merge sort: divide into sub arrays, sort them, then merge them. Uses recursion, nlogn
+  - Quick sort: pick element, divide array into sub arrays less and greater, repeat on sub arrays. n^2
+  - Bubble sort: pairwise ascending swaps, repeat globally until no swaps over the pass
+- Equal probability character example
+  - Search array of zero then non zero numbers: go by factor of 2, on first hit search in between by halves. Logn
+
