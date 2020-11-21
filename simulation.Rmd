@@ -6,3 +6,37 @@
 - Control variates
 - Importance sampling
 - Copula - what is its use
+
+## Generating random variables {#sim-generating-rv}
+
+Monte Carlo integration
+
+### Inverse transform method {#sim-generating-rv-inverse-transform}
+
+### Composition method {#sim-generating-rv-composition}
+
+### Acceptance-rejection method {#sim-generating-rv-acceptance-rejection}
+
+## Generating correlated random variables {#sim-generating-corr-rv}
+
+## Simulation of stochastic processes {#sim-stoch-proc}
+
+### Ito diffusions {#sim-stoch-proc-ito}
+
+### Poisson proccess {#sim-stoch-proc-poisson}
+
+### Jump diffusion proccesses {#sim-stoch-proc-jump}
+
+## Variance reduction methods {#sim-var-red}
+
+### Control variates {#sim-var-red-control-variates}
+
+### Antithetics {#sim-var-red-antithetics}
+
+### Conditional Monte Carlo {#sim-var-red-importance-sampling}
+
+### Stratified sampling {#sim-var-red-stratfied-sampling}
+
+## Risk management applications
+
+## American options

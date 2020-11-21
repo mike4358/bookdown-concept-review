@@ -3,7 +3,10 @@
 - Brownian motion & its properties
   - Example: $Y(t)=W(t)^2-t$
   - Exponential martingale
-- Ito’s Lemma
-- Martingale process: drift term = 0
+- Ito’s Lemma 
+- Martingale process: drift term = 0 
+  - Stoch models assignment 7 1.a
 - Ornstein-Uhlenbeck process: how to get its solution
   - see diff eq?
+- Wald's martingale
+- Gambler's ruin

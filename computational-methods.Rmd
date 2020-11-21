@@ -1,0 +1,9 @@
+# Computational Methods {#compmethods}
+
+- Fast fourier transform
+- Characteristic function
+- Relate gamma to chi square distribution
+- trapezoidal rule
+- pricing with cosine method
+- stratified sampling
+- Kalman filtering

@@ -1,5 +1,6 @@
 # Optimization {#opt}
 
+- Finish printing out lecture notes
 - Dynamic Programming
   - Integer Knapsack, Bellman, optimal execution, recursion
 - Linear Programming

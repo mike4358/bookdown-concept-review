@@ -1,0 +1,3 @@
+# Structured Products {#structprod}
+
+- a bunch of stuff to go through 

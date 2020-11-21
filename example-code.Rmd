@@ -72,7 +72,15 @@ And now an equation:
 Some text for this block.
 ```
 
-```{r example-shiny-app, fig.cap='Example Shiny App.', eval=FALSE}
+```{r example-shiny-app, fig.cap='Example Shiny App.'}
   knitr::include_app(' https://mike4358.shinyapps.io/temp-shiny/', height = '600px')
 ```
 -->
+
+### Sections for course materials
+
+1. Syllabus/Lecture Notes Handouts
+2. Written Notes
+3. Homeworks
+4. Exams
+5. Practice

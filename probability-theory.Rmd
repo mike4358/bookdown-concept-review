@@ -15,6 +15,7 @@
   - Stars & bars, grid walking
 - Central limit theorem
 - Law of large numbers (and its uses)
+  - Strong vs. weak
 - Bayes formula
   - Application to Gibbs Sampler in Data Analysis
 - Gambler’s ruin (also as state)
@@ -25,3 +26,50 @@
   - Diff between 0 corr and independence
   - Relation to Linear Algebra
 - Variance & Covariance formulas (E[XY]-E[X]E[Y], etc.)
+
+## Discrete Distributions {#prob-discrete-dist}
+
+## Continuous Distributions {#prob-continuous-dist}
+
+### Normal distribution {#prob-continuous-dist-normal}
+
+### Uniform distribution 
+### Beta distribution 
+### Gamma distribution 
+### Exponential distribution 
+### Bernoulli distribution 
+### Binomial distribution 
+### Poisson distribution 
+### Chi-squared distribution 
+### Student-t distribution 
+### Wishart distribution 
+
+## Law of large numbers {#prob-lln}
+
+### Weak {#prob-lln-weak}
+
+```{theorem, name="The weak law of large numbers", label="weak-lln"}
+Suppose $\left\{X_n\right\}_{n\ge1}$ is a sequence of independent and identically distributed random variables, each having finite mean $E\left[X_i\right]=\mu$. Then for any $\epsilon>0$, $$P\left\{\left|\frac{\sum_{i=1}^nX_i}{n}-\mu\right|\ge\epsilon\right\}\rightarrow0\ \text{as}\ n\rightarrow\infty\ $$
+```
+
+```{proof}
+comes via ross. need assumption that rvs have finite variance $\sigma^2$
+```
+
+The PROBABILITY of the abs demeaned average being greater than an arbitrarily small positive constant goes to zero as n goes to infinity. 
+
+Look up general form of this proof from Prob Theory class. it's like a convergence in prob
+
+Difference to strong LLN is weak is a statement of the evolution of probability (average likely to be near mu for large n), whereas strong is about the evolution of the level (average bound to stay near mu for m>n)
+
+### Strong {#prob-lln-strong}
+
+```{theorem, name="The strong law of large numbers", label="strong-lln"}
+Suppose $\left\{X_n\right\}_{n\ge1}$ is a sequence of independent and identically distributed random variables, each having finite mean $E\left[X_i\right]=\mu$. Then, with probability 1, $$\frac{\sum_{i=1}^nX_i}{n}\rightarrow\mu\ \text{as}\ n\rightarrow\infty\ $$
+```
+
+
+
+## Central limit theorem {#prob-clt}
+
+

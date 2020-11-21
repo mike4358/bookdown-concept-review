@@ -5,8 +5,10 @@
 - ARCH, GARCH, I-GARCH
   - With examples going from daily prices to fitted models
   - Why exponential weight relationship?
-- MLE
-- Fisher
+- MLE - what is consistent
+  - iid assumption allows likelihood to be written as product of pdfs
+  - why use log likelihood vs. not log
+- Fisher information
 - AIC/BIC
 - Stationarity
 - Multicollinearity (& relation to Lin alg), what does it do to coefficients & their t-stats?
@@ -19,3 +21,115 @@
 - For univariate, does R2 = covariance?
 - Why run levels-levels, ln(levels)-ln(levels), etc.? econometrics
 - Gibbs sampler
+- EM algorithm
+- newey west, panel etc.
+
+## Convergence of random variables {#da-converge}
+
+### Converge almost surely {#da-converge-as}
+
+as X increments it BECOMES equal to a RV
+
+### Converge in probability {#da-converge-prob}
+
+as X increments the probability of the abs diff being greater than arbitrarily small positive constant goes to zero
+
+### Converge in distribution {#da-converge-dist}
+
+as X incrments its distribution comes equal to that of another's
+
+a.s. --> prob --> dist. What are the differences?
+
+
+### Slutsky's theorem {#da-converge-slutsky}
+
+
+
+## Estimation {#da-estimation}
+
+### Estimator
+
+it's a FUNCTION, i.e. takes in the samples and spits out a number. the estimate is the number that's spit out. Examples: sample mean has a definite functional form
+
+### Unbiased
+
+expectation of estimator equals the parameter. 
+
+do examples for unbiased and biased
+
+
+### Consistent
+
+estimator converges in probability to parameter
+
+### Mean squared error
+
+### Method of moments
+
+
+
+### Maximum likelihood estimators (own section?)
+
+
+### Fisher information matrix
+
+### Cramer-Rao inequality
+
+
+### Example: GBM
+
+
+
+### Expectation-maximazation algorithm
+
+example: Mixed normal model 
+
+supposes a distribution. introduces latent variable to solve
+
+
+## Hypothesis testing {#da-hypothesis}
+
+
+## Baysian statistics {#da-bayseian}
+
+
+### Markov chain Monte Carlo
+
+are there non Gibbs MCMC examples?
+
+### Gibbs sampler
+
+used to generate samples in multi-variate cases when marginals hard to compute. uses conditional distrubions instead.
+
+Example 1: Beta-binomial distrbution
+
+Example: Normal hierarchical model
+
+
+## Asset allocation {#da-asset-alloc}
+
+wishart & inverse wishart distributions - relation to gamma dist - used for model for cov matrix?
+
+### Shrinkage estimators
+
+- James-Stein
+- Jorion
+- Covariance
+
+non-informative prior & informative priors
+
+### Empirical Bayseian
+
+
+### Black-Litterman model
+
+
+## Regression models {#da-regression}
+
+## Linear time series analysis {#da-linearTS}
+
+
+## Conditional heterscedastic models {#da-heterscedastic}
+
+
+## Principal component analysis and factor analysis {#da-pca-factor}

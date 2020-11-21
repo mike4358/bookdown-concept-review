@@ -14,6 +14,7 @@
   - Repetition trick for $e$ and continuous compounding: $e^x=\lim_{n\to\infty}(1+\frac{x}{n})^n$
 - Taylor’s formula & Taylor series
 - First order condition
+- Lagrange multiplier
 
 ## Example of equation reference
 
