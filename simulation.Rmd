@@ -7,17 +7,55 @@
 - Importance sampling
 - Copula - what is its use
 
-## Generating random variables {#sim-generating-rv}
+## Monte Carlo integration
+TRICK: relate integration with expectation - how?
+  - function of random variable where rv is uniform
+  - pdf f(x) of uniform is:
+  - expectation of that function
+Strong LLN (relate to prob theory), unbiased, consistent, relate to data analysis
+examples 1d and 2d
 
-Monte Carlo integration
+
+## Generating random variables {#sim-generating-rv}
+all rely on being able to generate U(0,1) iid samples
 
 ### Inverse transform method {#sim-generating-rv-inverse-transform}
+invert CDF of RV
+
+- Discrete
+  - geometric from uniform
+  - poisson from uniform
+
+- Continuous
+  - Exponential
+  - from pdf
+  - simulate max
+  - doesn't work for normal dist
 
 ### Composition method {#sim-generating-rv-composition}
+what is it
+
+- hyperexponential
+- other examples
+
 
 ### Acceptance-rejection method {#sim-generating-rv-acceptance-rejection}
+accept a sample according to criterion
+proof
 
-## Generating correlated random variables {#sim-generating-corr-rv}
+- beta
+- lognormal/normal
+
+
+### Generating iid std normal RVs
+- box-muller
+- polar
+- rational approximations
+
+
+
+
+### Generating correlated random variables {#sim-generating-corr-rv}
 
 ## Simulation of stochastic processes {#sim-stoch-proc}
 
@@ -27,7 +65,11 @@ Monte Carlo integration
 
 ### Jump diffusion proccesses {#sim-stoch-proc-jump}
 
+
+
+
 ## Variance reduction methods {#sim-var-red}
+slides 3
 
 ### Control variates {#sim-var-red-control-variates}
 
@@ -35,8 +77,25 @@ Monte Carlo integration
 
 ### Conditional Monte Carlo {#sim-var-red-importance-sampling}
 
+### importance sampling
+
 ### Stratified sampling {#sim-var-red-stratfied-sampling}
 
+
+## estimating sensitivities for options
+slides 4
+
+
+
+
 ## Risk management applications
+slides 5
+
+
 
 ## American options
+slides 6
+
+
+## Pricing under stochastic volatility
+slides 7

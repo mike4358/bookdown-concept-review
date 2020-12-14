@@ -16,6 +16,15 @@
 - Central limit theorem
 - Law of large numbers (and its uses)
   - Strong vs. weak
+  - use in rules of stoch calc (stoch models lect 21)
+- Law of total probability
+- Conditional probability
+  - Law of total expectation (Tower rule/property), related to law of total prob
+  - ex. Trapped miner example, spider on cube example
+  - Used in Markov chains
+  - Look for resetting/recursion
+- law of total variance
+- Law of total covariance
 - Bayes formula
   - Application to Gibbs Sampler in Data Analysis
 - Gambler’s ruin (also as state)
@@ -26,23 +35,57 @@
   - Diff between 0 corr and independence
   - Relation to Linear Algebra
 - Variance & Covariance formulas (E[XY]-E[X]E[Y], etc.)
+- Convolution - sums of indep random variables, ex triangular density
+- poisson process
+  - definition
+  - interval time is exponentially distributed, arrival times are gamma
+- error function (erf, used in applications programing var of robust arb model) https://en.wikipedia.org/wiki/Error_function
+- indicator expectation - probability relation (see Foundations of FE black scholes)
+- add ross citation
+[@ross2014]
 
 ## Discrete Distributions {#prob-discrete-dist}
 
 ## Continuous Distributions {#prob-continuous-dist}
 
 ### Normal distribution {#prob-continuous-dist-normal}
+bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation to binomial tree
+
+### Lognormal distrbution
 
 ### Uniform distribution 
+
 ### Beta distribution 
+
 ### Gamma distribution 
-### Exponential distribution 
-### Bernoulli distribution 
-### Binomial distribution 
-### Poisson distribution 
+
+### Exponential distribution
+memoryless property application, relation to geometric, hyperexponential (releate to simulation)
+
+### Bernoulli distribution
+relation to binomial, bernoulli process
+
+### Geometric distribution
+hypergeometric, relation to exponential
+
+### Binomial distribution
+relation to poisson, relation to bernoulli (sum of bernouli)
+
+### Negative binomial distribution
+From stoch models, relation to gamma
+
+### Poisson distribution
+relation to binomial, poisson process
+
+### Weibull distribution
+### Cauchy distribution
+### Beta distribution
+relate to simulation accept/reject algo
 ### Chi-squared distribution 
+sum of indep std normals, relation to gamma distrbution
 ### Student-t distribution 
 ### Wishart distribution 
+### Inverse wishart distribution
 
 ## Law of large numbers {#prob-lln}
 

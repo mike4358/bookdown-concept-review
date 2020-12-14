@@ -7,3 +7,4 @@
 - Nonhomogeneous linear
 - Characteristic equation of function
 - Ansatz
+- Gambler's Ruin: https://en.wikipedia.org/wiki/Recurrence_relation

@@ -7,14 +7,21 @@
 - Substitution by definite integrals
 - Integration by parts $\int udv=uv-\int vdu$
   - Ex. integral of $\ln{x}$
+  - ex. application to compute variance of integral of BM
+  - prob in poisson process
 - Euler's formula
 - Geometric series - substitution trick
   - Applications: trend weight normalization
 - Limits to infinity
-  - Repetition trick for $e$ and continuous compounding: $e^x=\lim_{n\to\infty}(1+\frac{x}{n})^n$
+  - Repetition trick for $e$ and continuous compounding (related to foundations of FE): $e^x=\lim_{n\to\infty}(1+\frac{x}{n})^n$
 - Taylor’s formula & Taylor series
+  - application to first step analysis in stoch models
 - First order condition
 - Lagrange multiplier
+- gradient
+- hessian
+- curl
+- triangle inequality
 
 ## Example of equation reference
 
@@ -23,3 +30,7 @@ Equation \@ref(eq:example-1-equation)
 ## Example of section reference
 
 Section \@ref(examples-section-1-subsection-1)
+
+## Example of cross-reference (hyperlink)
+
+[Normal Distribution](#prob-continuous-dist-normal)

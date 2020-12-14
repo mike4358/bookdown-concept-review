@@ -1,6 +1,7 @@
 ## Example Sub Topic {#example-sub-topic}
 
-example
+example of splitting rmd files into smaller chunks & calling from others
+
 \begin{equation}
   E=mC^2
   (\#eq:example-1-equation)

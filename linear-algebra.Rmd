@@ -3,17 +3,24 @@
 - Angle: $\cos{\theta}=\frac{x^Ty}{\|x\|\|y\|}$
 - Orthogonal is when dot product is 0
 - Corr is cosine of angle between them in Euclidean
-- QR Decomposition
-- Determinants
+- Determinants of matrix
 - Characteristic equation of matrix 
-- Eigenvalues & Eigenvectors: needs square, PCA
 - Positive semidefinite/positive definite
+  - relation to cholesky (psd always cholesky decomposible)
 - LU decomp
 - Cholesky decomp
   - Application for monte carlo simulation for correlated random normal
+- PDP decomp
+- QR decomp
+- Diagonalization
+- Eigenvalues & Eigenvectors: needs square
+- Singular Value Decomposition (SVD)
+  - used in power meth for eigen
+- Principal Components Analysis (PCA)
 - Symmetric Matrix
 - L1 l2 norms
-- Singular Value Decomposition
 - Basis
 - Invertible Matrix Theorem
 - Gram-schmidt orthonormalization
+- matrix rank, full rank
+- commutable matrix: AB=BA, what if one of them is identity matrix I?

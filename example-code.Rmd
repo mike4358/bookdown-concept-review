@@ -2,14 +2,14 @@
 
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(calc). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(linalg).
 
+## Figures and tables example {#examples-figures-and-tables}
+
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
 ```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
 par(mar = c(4, 4, .1, .1))
 plot(pressure, type = 'b', pch = 19)
 ```
-
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
 
 ```{r nice-tab, tidy=FALSE}
 knitr::kable(
@@ -18,25 +18,36 @@ knitr::kable(
 )
 ```
 
+### Referencing {#examples-figures-and-tables-referencing}
+
+Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+
+## Citations {#examples-citations}
+
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
 
-## Section Example {#examples-section-1}
+## Section example {#examples-section-1}
 
-Here's some text in a section. Below are some examples of code chunks
+Here's some text in a section. Below are some examples of code chunks:
 
-```{r test-chunk-r, eval=TRUE}
+```{r test-chunk-r, eval=FALSE}
 library(reticulate)
-x = 42
+
+use_condaenv(condaenv = "r-reticulate")
+scipy <- import("scipy")
+scipy$amin(c(1,3,5,7))
+pd <- import("pandas")
+x <- pd$array(c(1,2,3))
 print(x)
 ```
 
 ```{python test-chunk-python, eval=FALSE}
-# import pandas as pd
-# 
-# x = np.array([1,2,3])
+import numpy as np
+import pandas as pd
 
-#x = 42 * 2
-print("hello")
+x = np.array([1,2,3])
+x = x * 2
+print(x)
 ```
 
 Now here's some math:
@@ -52,18 +63,18 @@ And now an equation:
   (\#eq:exampleequation)
 \end{equation}
 
-### Sub-section Example 1 {#examples-section-1-subsection-1}
+### Sub-section example 1 {#examples-section-3-subsection-1}
 
 1. first
-2. seconds
+2. second
 3. third
 
-### Sub-section Example 2 {#examples-section-1-subsection-2}
+### Sub-section example 2 {#examples-section-3-subsection-2}
 
 `` `code` ``
 
 
-
+<!-- This calls a child rmd -->
 ```{r calc1child, child="example-subdirectory/example-1.Rmd", echo=FALSE}
 ```
 
@@ -76,11 +87,3 @@ Some text for this block.
   knitr::include_app(' https://mike4358.shinyapps.io/temp-shiny/', height = '600px')
 ```
 -->
-
-### Sections for course materials
-
-1. Syllabus/Lecture Notes Handouts
-2. Written Notes
-3. Homeworks
-4. Exams
-5. Practice

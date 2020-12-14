@@ -36,7 +36,7 @@ as X increments the probability of the abs diff being greater than arbitrarily s
 
 ### Converge in distribution {#da-converge-dist}
 
-as X incrments its distribution comes equal to that of another's
+as X increments its distribution comes equal to that of another's
 
 a.s. --> prob --> dist. What are the differences?
 
@@ -91,7 +91,8 @@ supposes a distribution. introduces latent variable to solve
 
 
 ## Baysian statistics {#da-bayseian}
-
+Lecture 4
+conguate priors
 
 ### Markov chain Monte Carlo
 

@@ -1,0 +1,92 @@
+# Stochastic Models {#stochModels}
+
+Little blurb about what is contained within.
+
+Topic list:
+
+- probability review
+  - distributions & properties (like sum of indep bin RVs is bin)
+  - prob theory stuff like expectations
+  - generally add as examples/applications into prob theory section
+    - ex. burglar example, binomial asset pricing model (post lecture 1-2, relate to foundations of FE), birthday problem, poisson process
+
+- Discrete time markov chains
+  - what is the motivation for learning these? one is for cont time
+  - define markov property
+  - AR(1) model, AR(d) model
+  - notation $u_x$
+  - Directed graph & matrix
+  - Transition matrix
+  - First step analysis: understand examples
+  - Finite state spaces, irreducible (absorbing markov chain): transition matrix formula & K prob matrix properties
+  - Gambler's ruin: example questions, correct setup, second order constant linear recursions: homogeneous & non-homogeneous <-- ansatz solution: recurrence relation, relation to diff eq, finding constants, p=q & p<>q, 
+  - look for chain restarting
+  - example with submatrix
+  - additional examples
+
+- Continuous time markov chains
+  - motivation: used to derive PDE for option pricing 
+  - o(h) notation
+  - finite state space
+  - graphs, transition rate matrix, transition probablity matrix
+  - discretization of problem
+  - application of first step analysis to discretized
+  - example 1: pricing, relate to stoch calc (at least Shreve? feynman kac, stochastic integral)
+    - taylor expansion: e^(-rh) = 1 - rh + o(h)
+    - kolmogorov backward equation
+    - again, an ansatz solution via real ODE
+    - boundary conditions
+  - example 2: of expectation of time
+  - example 3: random r
+  - example 4:
+
+- Brownian Motion (Lectures 14-23)
+  - motivation: 
+  - definition
+  - properties
+    - brownian bridge
+    - integral of BM
+    - intergration by parts trick
+    - it's markov - next value indep of all previous
+    - it's a cont time martingale - E[X(0)] == E[X(T)]
+  - variations
+    - geometric BM
+  - reflection principle (relate to Foundations credit, implied vol)
+  - relation to martingale, wald's martingale for continuous time
+  - optional sampling theorem continuous time
+  - exponential martingale
+  - example: black scholes pde
+  - relation to Diffusion processes
+  - drifted BM
+  - OU - solution
+  
+- stoch calc
+  - box calc
+
+- Martingales
+  - Definition (versions 1 & 2)
+  - Optional stopping theorem/optional sampling theorem - need to pick right martingale
+    - definition: under conditions, exp of martingale at stopping time IS EQUAL to expectation of initial value
+  - martingale difference
+  - conditions stoch process is martingale
+  - stochastic intergral - relate to quad variance in stoch calc
+  - stopping times: definition & examples
+  - example: random walk
+  - example: wald's martingale [Wald's Martingale](https://en.wikipedia.org/wiki/Wald%27s_martingale)
+  - example: Casanova's Martingale
+  - example: gambler's ruin, relation to wald's
+  - example: risk theory, solve for param in wald's martingale
+  - example: abradadabra
+  
+## Discrete time Markov chains {#stochModels-DTMC}
+
+Little blurb about what they are and motivation
+
+### Definition {#stochModels-DTMC-definition}
+
+This will be more formal
+
+## Continuous time Markov chains {#stochModels-CTMC}
+
+  
+  

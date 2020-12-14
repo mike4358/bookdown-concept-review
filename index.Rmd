@@ -8,7 +8,7 @@ output: bookdown::gitbook
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
-link-citations: yes
+link-citations: TRUE
 url: 'https\://bookdown.org/mike4358/concept-review/'
 github-repo: mike4358/bookdown-concept-review
 # cover-image: "images/cover.png"
@@ -20,6 +20,11 @@ github-repo: mike4358/bookdown-concept-review
 # Introduction {-}
 
 This book is designed for review of concepts.
+
+```{r python setup, include=FALSE}
+library(reticulate)
+reticulate::use_condaenv()
+```
 
 ```{r references, eval=TRUE, include=FALSE}
 # automatically create a bib database for R packages

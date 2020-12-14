@@ -4,7 +4,7 @@
 - Put-call parity: $c+K^{-r\tau}=p+S-D$
   - $c-p=S-K^{-r\tau}$
 - Black-Scholes PDE & its derivation
-  - Discounted Fynman-kac
+  - Discounted Feynman-kac
 - Black-Sholes formula & its derivation
 - Trend signal:
   - Prove relationship between half-life, window, and speed/alpha
@@ -18,3 +18,219 @@
     - Productivity, terms of trade
     - Looked into adding for EM: VIX, CA, IIP
 - Transaction Cost examples
+
+
+
+- Foundations of Financial Engineering
+  - Interest rates
+    - Simple
+    $$V\left(t\right)=V\left(0\right)\left(1+rt\right)$$
+    - Periodically compounding
+      - k is number of compounding periods
+      - m is compounding times per year
+      - k/m is time in years
+    -Continuous compounding
+      - take limit of periodic compounding as m goes to infinity
+      - SHOW PROOF (based on repeating, l'Hospital's rule needed?), related to calculus section
+      - case when r deterministic function of time
+    - Present value
+      - embedded assumptions: ideal bank
+        - same rate for loans & deposits at any size
+        - no service charges or transaction fees
+        - separate transactions additive 
+        - interest rate available at any amount for any duration
+      - what happens when conditions not met?
+      - if met, then can equate cash flows
+    - Internal rate of return
+      - sets stream of cashflows (including initial outlay) equal to zero & solves for r
+      - polynomial representation
+        - conditions under which root exists
+        - proof: define f(c) which starts negative is strictly increasing
+        - if sum of undiscounted cashflows (including initial outlay) positive, then IRR positive
+      - example IRR vs. PV
+  - Fixed income securities
+    - Perpetual annuities
+      - PV = A/r SHOW PROOF (probably same repeition trick used in geometric series, relate to calc)
+      - amortization - reformulate to solve for A: for $100 outlay today, what annual payment should i make to you forever based on prevailing interest rates?
+    - Finite-life annuities
+      - show proof of PV formula
+      - amortization - solve for A
+    - Bonds
+      - Yield to maturity: show proof of PV formula, it's the IRR @ current bond price
+      - Macaulay duration: show mathematical definition of time cashflow-weighted time
+      - Modified duration: show that partial deriv of PV of bond wrt YTM is related to Macaulay duration
+        - alternatively can use taylor expansion of the change in PV: will use duration & convexity in the first two orders
+  - Discrete time term structure & spot rates (relate to Term Structure Modeling)
+    - r not constant for all terms, so discounting cashflows done with different rates
+    - show the formulas
+    - create ZCB from two coupon bonds with different coupons & PVs but same tenor
+      - show formula, but essentially weight (long-short) the two s.t. no coupon
+    - forward rates
+      - no-arb argument for implying forward rates from spot rates
+      - show forward rate formula for periodic & continuous compounding cases
+    - short rates
+      - show definition
+    - YTMs for bonds of different maturities can and do vary
+  - Default Risk
+    - modeling default risk in PV of (constant yield) bond with survival likelihood pi
+    - 1 - pi is probability of default
+    - pi applied to each cashflow and can vary by each cashflow
+    - modeled like this, can reformulate the discount factor as having a new yield based on pi and the original yield
+    - show that the new yield is >= original yield
+  - Continuous time framework
+    - ZCB: P(t,T) & its properties
+    - Forward rate agreement
+      - definition: defined by ZCB (0, t, T, S) forward investment in ZCBs - relate to more standard definition in Term Structure models of reference rate vs. forward rate <-- ZCBs are discount factors
+    - Simple forward rate: from formulation in FRA, get formula for simple forward rate
+    - simple spot rate: lim as T->t, relate to discrete time spot rate & term structure modeling
+    - continuously compounded forward rate: give formula, relate to simple forward rate
+    - instantaneous forward rate: take lim S->T, show that ZCB is equal to exp of neg integral of forward
+    -continuously compounded spot rate: from cont compounded fwd rate - undo and show PV in terms of r
+    - instantaneous short rate: take lim of cont comp spot rate as T->t
+    - arbitrage example
+      - use instantaneous forward rate formula
+      - show that if there's parallel shifts in the instantaneous forward curve, a portfolio of three ZCB can be constructed s.t. zero cost today, 0 or positive money tomorrow
+  - Overview of derivatives
+    - Forward contracts, obligation to buy at pre specified price K, which is solved for to make entry cost 0
+      - K = S0erT due to no-arbitrage cash * carry
+    - European options: embeds leverage, bull spread call & variations, butterflies with calls or puts, binaries
+  - No-Arbitrage Relationships Among Derivatives
+    - No arbitrage bounds (why?)
+      - C>=0
+      - S>=C
+      - P>=0
+      - K>= P
+      - C >= S - Ke-rt: show arbitrage if lower bound violated, positive today, 0 or positive tomorrow, make chart 
+      - P>=Ke-rt-S: lower bound, similar steps as call
+      - putting together max(S-Ke-rt, 0)<=C<=S
+      - and max(Ke-rt -S)<=P<=K
+    - Law of once price: if payoff A == payoff B, then price of A == B for all t<=T
+    - put-call parity
+      - sell call, buy put, buy stock, borrow Ke-rt
+      - portfolio value = 0 in all states of S(T)
+      - by law of one price portfolio must be 0 today
+      - rearranging gives: C-P=S-Ke-rt
+      - can combine with bounds above to get upper bounds (ex. P<=Ke-rt uses PC parity + C<=S)
+      - make chart from Notes_2014_09_18 Put-Call Parity.pdf: option price wrt K, it shows upper and lower bounds and convexity
+    - convexity in K
+      - calls: K1<K2 then 0 <= C(K1) - C(K2) <= (K2-K1)e-rt (see lecture notes - can get arbitrage on second relation if >)
+      - then let K1<K3, define K2, FINISH OUT (use jensen's inequality?)
+      - conclusion is that C is decreasing convex in K & P is increasing convex in K
+    - American options bounds
+      - CA>=C, PA>=P
+      - CA>=max(0,S-K), PA>=max(0,K-S)
+      - increasing in Time to expiration
+    - examples of identifying arbitrage
+      - example 1: forward price not increasing
+      - example 2: fwd price same, but put call parity 
+      - example 3: finish
+    - spread option
+      - define payoff
+      - show lower bound in terms of european vanilla calls
+  - Binomial Model for Derivatives Pricing (related to Implied Vol)
+    - Notes_2014_09_30 Notes on Binomial Model
+    - One-period binomial model
+      - u & d moves, r>=0 cont compounding
+      - replicating portfolio to match call option payoff, buy/sell stock & bank $\Pi_0=aS_0+b$
+      - SOLVE for a and b (2 eqn 2 unkwns)
+        - a is amount of stock to hold: diff opt / diff stock (approx delta)
+        - b is amount of bank 
+      - C must be equal to replicating port by law of one price
+      - substitute in a and b, then rearrange to get coeffs (discounted q, 1-q) in front of 2 payoff states
+        - payoff doesn't have to be standard max(0,S-K)
+      - graphical representation
+      - discussion of risk-neutral vs. historical (relate to option derives risk from stock)
+      - factor out e-rT to get q and (1-q) definitions
+      - show that q is a probability, look into u>erT assumption
+      - example when payoff is just S(T)
+    - Two-period binomial model
+      - recombining tree (relate to Implied Vol trees)
+      - q defined as in one-period example
+      - solve backward in time
+      - a's and b's need to be solved for at each node
+      - generalized case for all recombining two-period trees
+        - shows that option price can be written as discounted expected terminal payoff 
+        - general form for a's and b's
+      - example asian call
+    - Multi-period binomial model
+      - form for nest loop to iterate backward thru tree
+      - at each node have formula for V, a, b
+      - price as conditional expectation: work forward 
+      - start setting seeds for binomial
+        - ups and downs related to choose function
+        - ups/downs result of bernoulli
+          - bernoulli process
+          - mean and variance of sum of indep bernoulli (binomial)
+          - Notes_2014_10_07 Bernoulli Process and Time of Success
+        - result is that know pmf & prob for each of the final states
+        - see binomial option pricing formula
+  - Pricing American Options using binomial tree
+    - 3 period example
+    - at each node prior to terminal, compare continuation value to exercise value, replacing former with latter if latter higher
+    - show that never exercise early for non-div amer call using binomial option pricing
+      - at each node continuation higher than exercise PROOF
+  - Dividends
+    - constant dividend rate assumption
+      - show distributional equivalency in two cases
+      - leads to ability to set initial S(0) to be S(0)e-dT
+      - no-arb relationships w/ divs: basically just replacement
+      - in binomial model: replace S(0), reformulate q
+      - same for multi-period binomial model & price as conditional expectation
+      - american options: SHOW that possible to exercise amer call early
+    - binomial tree with single dividend
+      - shifts branches down at that layer
+  - Continuous-time limit of binomial model
+    - let delta t = T / N
+    - define u and d (why?)
+    - see Notes_2014_10_14 Notes on q_u_d in Multi-Period Binomial Model
+    - find limiting distribution - use CLT (relate to prob theory, demeaned scaled sum is distributed normal
+    - geometric random walk
+    - convert to arithmetic random walk via logs
+    - find mean & var of the sums
+    - do substitution to remove depenency on delta t
+    - plug into CLT to show log S(T) is normal with mean and var
+    - blah blah
+    - get binomial pricing formula in continuous time limit
+  - Black-Scholes Option Pricing Formula
+    - example for call
+    - split discounted expected payoff into two terms
+    - 2nd term indicator prob relation
+    - 1st term see notes
+    - Notes_2014_10_21 Notes on Black-Scholes Option Pricing Formula
+  - Price Sensitivities
+    - Notes_2014_10_21 Notes on Black-Scholes Option Pricing Formula
+    - Notes_2014_11_06 Notes on Greeks - Sensitivity Analysis of Calls and Puts
+    - Notes_2014_11_14 Notes on Vega and Implied Volatility
+    - amount S held
+    - amount in bank
+    - prob call end up in money
+    - delta, gamma, theta deriv
+    - write call price in terms of greeks - black sholes pde - relate to stoch models/calc
+    - put delta, gamma, theta from call & pc parity
+      - vega: derivation & relation with gamma
+  - Implied Volatility
+    - Notes_2014_11_14 Notes on Vega and Implied Volatility
+    - Notes_2014_11_20 Notes on Implied Volatility and Implied Density
+    - implied vol
+      - what is it
+      - call: upper bound for implied vol slope wrt K, put: lower
+  - Implied density
+    - extracting pdf from call strike relationship
+    - alternative way
+    - Notes_2014_11_20 Notes on Implied Volatility and Implied Density
+    - Notes_2014_11_25 Notes on Implied Density and Hedging with Greeks
+  - Static Hedging
+    - Notes_2014_11_25 Notes on Implied Density and Hedging with Greeks
+    - make portfolio delta and gamma neutral
+  - Exchange-Traded Funds (not done in class)
+  - Credit Risk
+    - Notes_2014_12_02 Credit Risk_marks
+    - structural models
+      - merton model - european digital, distance to default
+      - black-cox model
+        - down-and-out digital option
+        - need concept of first passage time (relate to stoch models)
+        - refection principle (stoch models, implied vol)
+    - intensity models
+      - defaults come as surprise and just happen (jump?)
+      - examine matlab code - lam_0

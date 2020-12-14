@@ -1,19 +1,161 @@
 # Optimization {#opt}
 
-- Finish printing out lecture notes
-- Dynamic Programming
-  - Integer Knapsack, Bellman, optimal execution, recursion
-- Linear Programming
-  - Simplex method
-  - Interior Point
-- Integer programming
-  - Branch and bound
-- Duality
-- Quadratic Programming
-  - Lasso
-  - Second order cone
-- Non-linear
-  - Gradient based
-  - Hessian based
-  - KKT point
+- Overview
+  - asset alloc example
+  - definition of linear program
+  - discussion of mean-var framework (quadratic program)
+    - lambda risk aversion parameter - how to estimate?
+    - what is elliptical distribution? (generalizes multivariate normal)
+    - penalty in obj func for trading costs
+  - other frameworks
+    - min risk measures like variance, VaR, cVaR (need stochastic programming)
+    - multi-period problem (need dynamic programming)
+      - how to take expectation?
+      - basis functions & approximate dynamic programming
 
+- Linear Programming
+  - Definition: single linear obj func, linear ineq constraints, decision variable continuous
+  - example: cash flow
+    - sensitivity analysis
+  - example: dedication (from book)
+    - sensitivity analysis
+  - example: network LP (FX arbitrage)
+  - geometry of LPs
+    - feasible set: intersection of halfspaces (forms a polytope)
+    - feasible solution
+    - level set: 
+    - squeeze: outer and inner linear feasible sets to approximate non-linear region
+  - Standard form of linear program
+  - Optimality conditions
+  - Simplex method
+  - Interior Point method
+    - only one slide
+  - Dual Linear Program
+    - what's the intuition?
+    - defined for standard form primal maximization LP
+    - Bounds on optimal value
+    - used in sensitivity analysis
+    - weak duality: optimal primal obj val <= optimal Dual obj val
+    - strong duality: P == D
+    - complementary slackness
+    - sensible, odd, bizarre constraints
+    - strong duality & sensitivity analysis
+  - Sensitivity Analysis
+    - dedication example
+  - piecewise linear convex optimization problems
+    - piecewise linear convex obj func & constraints can be reformulated into LP
+    - need to introduce new variable for the reformulation
+    - example 1: Scenario example (Slide 62)
+      - non-linear constraint in relaxed formulation makes it not an LP
+      - introduce new variable to reformulate
+    - example 2: No arbitrage example
+      - state price vectors
+      - reformulate piecewise linear obj func as LP
+      - bounds on option prices in incomplete markets (reference stoch calc for incomplete mkt)
+    - example 3: VaR, cVaR example
+      - can formulate approximation for cVaR using LP
+      - application to mean-cvar portfolio selection
+      - replace constraint with dual
+      - reformulate replaced constraint as piecewise linear convex function
+      - introduce new variable
+      - rewrite as LP
+    - example 4: minimum absolute deviatation example
+      - mean-MAD portfolio selection: minimize MAD obj func 
+      - obj func is piecewise linear convex
+      - need to reformulate
+  
+- Integer programming
+  - definition: like LP, but some/all decision variables take integer values
+  - special little representation trick for when y is binary function of x
+  - either-or example
+  - ex. Fixed trading cots
+  - ex. portfolio liquidation problem
+    - need to sell some of long-only portfolio to raise capital
+    - proceeds subject to cap gains tax
+    - want to maximize expected return of new positions after sale
+    - trick is introduction of binary variable
+  - ex. mean-VaR portfolio
+  - ex. concave trading costs
+  - set covering, packing, and partitioning
+    - what is the use?
+    - clever way of defining binary variables and relating them to express logic
+  - Branch and bound (BB)
+    - relaxes IP into LP
+    - branch (split) feasible region if needed
+    - fathom (remove) certain nodes based on criteria
+    - Cutting planes: adding new linear constraint, why?
+
+- Quadratic Programming
+  - definition: quad obj func, linear const, continuous decision variables
+  - want matrix representation of quadratic portion of obj func (Q matrix) to be symmetric (relate to linalg)
+  - applications: mean-var portfolio, MLE (relate to data analysis), regression
+  - modifications: black-litterman, Lasso (penalizes l1 norm [relate to linalg] of betas)
+  - Unconstrained quadratic programs
+    - optimality conditions 
+    - need eigenvalues/eigenvectors of Q matrix
+    - use symmetry of Q
+    - simple example
+    - least squares example
+      - relate to linalg form of linear regression
+    - Numerical stability
+      - QR decomp
+  - Constrained quadratic programs
+    - optimality conditions constrained
+      - global vs. local optimum
+      - feasible direction
+      - active vs. inactive inequality constraints
+      - critical points
+    - convex QP
+    - equality constrained
+      - solve in steps
+      - ex. simple mean-var portfolio
+      - two fund theorem
+    - inequality constrained
+      - solve via active set algorithm
+  - Second order cone programs (SOCP)
+    - constraint uses l2 norm (convex quadratic)
+    - ex. mean-volatility portfolio selection & variations
+    - wasn't given any method to solve
+  
+- General non-linear programming
+  - general form: min a convex obj func subject to linear/concave constraints
+  - optimality conditions
+    - need gradient and hessian (relate to calc)
+  - Gradient based
+    - iterative process that uses gradient at current point
+    - need to choose size at each iteration
+  - Hessian based
+    - minimizes a quadratic
+    - hessian needs to be positive semi definite (relate to linalg)
+  - Critical points
+    - taylor expand (linearize)
+    - KKT point is critical point of linearized problem
+    - global optimal for convex opt problem
+    - found by iteration
+    - finish out example
+  
+- Dynamic Programming
+  - definition/characteristics
+    - actions have reward/cost and result in state transition
+    - recursion in optimal values
+  - example 1: capital budgeting problem
+    - bellman recursion (relate to stoch calc)
+  - example 2: dynamic project selection
+  - example 3: Integer Knapsack
+  - example 4: Shortest path problem
+    - want shortest path from given node to all other nodes
+    - relation to linear program for deterministic dynamic program
+    - dual linear problem
+  - example 5: maximize the minimum height
+  - stochastic dynamic programming
+    - want optimal policy
+    - bellman recursion
+    - ex. American option pricing
+    - ex. optimal trade execution
+    - ex. utility maximization
+  - approximate dynamic programming
+    - ex. american option pricing via value from not exercising
+  - information relaxation
+    - what's the point? determine upper bound for values for maximization stochastic dynamic programs
+    - probably applied to american option pricing
+    - used to ease computational cost

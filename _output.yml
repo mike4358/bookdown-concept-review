@@ -12,6 +12,7 @@ bookdown::gitbook:
         </li>
     edit: https://github.com/rstudio/bookdown-demo/edit/master/%s
     download: ["pdf", "epub"]
+  split_by: "section"
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

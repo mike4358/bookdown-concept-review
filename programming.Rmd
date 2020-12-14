@@ -1,6 +1,7 @@
 # Programming {#prog}
 
 - Leetcode, hackerrank, ML python courses
+
 - C++
   - By ref vs by val
   - Pointers
@@ -8,6 +9,7 @@
   - Classes
   - Mutex & parallelizing computation
   - Rebuild examples in Xcode & VS Code
+  
 - Python
   - Decorator
   - Generator
@@ -20,8 +22,10 @@
   - SciPy
   - tensorflow
   - Importing, namespaces
+
 - R
   - packrat
+  
 - Algorithmic Complexity (maybe make it's own chapter)
   - Big-O notation
   - $\Omega$ notation
@@ -29,6 +33,7 @@
   - Master theorem
   - Horner’s algorithm: rewrite sum as recursion
   - Moving average: reuse previously computed average
+
 - Sorting Algorithms
   - Get best, worst, average, complexity, etc.
   - Insertion sort: inject new element one at a time. $W(n)=\Omega(\sum_{i=1}^{n} i)=\Omega(n^2)$
@@ -38,3 +43,27 @@
 - Equal probability character example
   - Search array of zero then non zero numbers: go by factor of 2, on first hit search in between by halves. Logn
 
+- Linked-lists
+
+
+
+- Applications Programming
+  - Lecture 1: using gurobi through python
+  - Lecture 2-4: reading text files in c (fopen, atoi, fscanf), memory allocation
+    - see HW 1
+  - Lecture 4-9: robust arbitrage model, generate scenarios, writes text for LP, calls python
+    - see HW 2
+  - Lecture 9: user forms in excel
+  - Lecture 10: VaR of robust arbitrage model, see pdf for derivation, need error function (erf)
+  - Lecture 11-14: solve MVO with quadratic program (relate to optimization)
+    - see HW 3
+  - Lecture 15-17: factor models, statistical factor models, PCA, power method for numerically computing eigenvalues, jacobi method (relate to data analysis & linalg)
+    - uses c++ classes for power method routine
+    - see HW 4 & 5
+  - Lecture 18-21: multithreading in Windows
+    - see HW 5 & final project
+  - Lecture 23-24: optimal trade execution (relate to optimization)
+    - see final project
+  - Lecture 24: some factor model stuff in c
+  - Lecture 25: dlls
+  - Review memory alloc, pointers * ** &, ++ iteration, -> operator, cores vs. threads, header promises functions from cpp file
