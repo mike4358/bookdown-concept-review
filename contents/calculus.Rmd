@@ -22,6 +22,9 @@
 - hessian
 - curl
 - triangle inequality
+- trapezoidal rule in integration
+- polar coordinates (reference box mueller in foundations, normal distribution in prob theory)
+- L'Hopital's rule
 
 ## Example of equation reference
 

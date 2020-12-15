@@ -31,7 +31,10 @@
       - k/m is time in years
     -Continuous compounding
       - take limit of periodic compounding as m goes to infinity
-      - SHOW PROOF (based on repeating, l'Hospital's rule needed?), related to calculus section
+      - SHOW PROOF
+        - based on repeating
+        - lhospitals rule needed?
+        - related to calculus section
       - case when r deterministic function of time
     - Present value
       - embedded assumptions: ideal bank
@@ -234,3 +237,4 @@
     - intensity models
       - defaults come as surprise and just happen (jump?)
       - examine matlab code - lam_0
+-->

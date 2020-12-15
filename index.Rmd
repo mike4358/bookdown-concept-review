@@ -21,6 +21,13 @@ github-repo: mike4358/bookdown-concept-review
 
 This book is designed for review of concepts.
 
+TO DO:
+
+- map class notes
+- map homeworks
+- map tests
+- import green book
+
 ```{r python setup, include=FALSE}
 library(reticulate)
 reticulate::use_condaenv()

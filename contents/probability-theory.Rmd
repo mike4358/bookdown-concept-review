@@ -14,6 +14,7 @@
   - inclusion/exclusion principle
   - Stars & bars, grid walking
 - Central limit theorem
+  - relate to simulation # of samples
 - Law of large numbers (and its uses)
   - Strong vs. weak
   - use in rules of stoch calc (stoch models lect 21)
@@ -23,24 +24,27 @@
   - ex. Trapped miner example, spider on cube example
   - Used in Markov chains
   - Look for resetting/recursion
-- law of total variance
-- Law of total covariance
+  - law of total variance (application to conditional monte carlo)
+  - Law of total covariance
 - Bayes formula
   - Application to Gibbs Sampler in Data Analysis
 - Gambler’s ruin (also as state)
 - Dice game: continuation if 4,5,6. Same principle of states like cave question
 - Look for games to start over again
 - Wald’s Equality
+- Jensen's inequality
 - Linearity in independent variances, non-indep corr triangle
   - Diff between 0 corr and independence
   - Relation to Linear Algebra
 - Variance & Covariance formulas (E[XY]-E[X]E[Y], etc.)
+- Bessel correction
 - Convolution - sums of indep random variables, ex triangular density
 - poisson process
   - definition
   - interval time is exponentially distributed, arrival times are gamma
 - error function (erf, used in applications programing var of robust arb model) https://en.wikipedia.org/wiki/Error_function
 - indicator expectation - probability relation (see Foundations of FE black scholes)
+- joint distribution, marginal distribution, conditional distribution
 - add ross citation
 [@ross2014]
 
@@ -49,7 +53,7 @@
 ## Continuous Distributions {#prob-continuous-dist}
 
 ### Normal distribution {#prob-continuous-dist-normal}
-bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation to binomial tree
+bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation to binomial tree, sums are normal
 
 ### Lognormal distrbution
 
@@ -60,7 +64,7 @@ bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation
 ### Gamma distribution 
 
 ### Exponential distribution
-memoryless property application, relation to geometric, hyperexponential (releate to simulation)
+memoryless property application, relation to geometric, hyperexponential (pdf is sum of exponential parameters, releate to simulation)
 
 ### Bernoulli distribution
 relation to binomial, bernoulli process
@@ -89,6 +93,10 @@ sum of indep std normals, relation to gamma distrbution
 
 ## Law of large numbers {#prob-lln}
 
+- deriving bounds
+  - Markov's inequality
+  - Chebyshev's inequality
+
 ### Weak {#prob-lln-weak}
 
 ```{theorem, name="The weak law of large numbers", label="weak-lln"}
@@ -101,7 +109,7 @@ comes via ross. need assumption that rvs have finite variance $\sigma^2$
 
 The PROBABILITY of the abs demeaned average being greater than an arbitrarily small positive constant goes to zero as n goes to infinity. 
 
-Look up general form of this proof from Prob Theory class. it's like a convergence in prob
+Look up general form of this proof from Prob Theory class. it's  a convergence in prob
 
 Difference to strong LLN is weak is a statement of the evolution of probability (average likely to be near mu for large n), whereas strong is about the evolution of the level (average bound to stay near mu for m>n)
 
@@ -115,4 +123,6 @@ Suppose $\left\{X_n\right\}_{n\ge1}$ is a sequence of independent and identicall
 
 ## Central limit theorem {#prob-clt}
 
+- convergence in distribution
 
+applied to sums of random variables

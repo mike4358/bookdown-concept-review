@@ -8,31 +8,49 @@
 - MLE - what is consistent
   - iid assumption allows likelihood to be written as product of pdfs
   - why use log likelihood vs. not log
-- Fisher information
 - AIC/BIC
 - Stationarity
-- Multicollinearity (& relation to Lin alg), what does it do to coefficients & their t-stats?
-- F-Test
-- Logistic Regression
-  - Drop in Deviance
-- Fixed effects
 - Bootstrapping - run multiple times to get different cuts & use the variability to estimate 
 - Pairs trading, cointegration
-- For univariate, does R2 = covariance?
-- Why run levels-levels, ln(levels)-ln(levels), etc.? econometrics
-- Gibbs sampler
-- EM algorithm
-- newey west, panel etc.
+
+- regression
+  - Why run levels-levels, ln(levels)-ln(levels), etc.? econometrics
+  - newey west, panel etc.
+  - Fixed effects
+  - For univariate, does R2 = covariance?
+  - Multicollinearity (& relation to Lin alg), what does it do to coefficients & their t-stats?
+  - F-Test
+  - Logistic Regression
+    - Drop in Deviance
+
+
 
 ## Convergence of random variables {#da-converge}
 
+https://en.wikipedia.org/wiki/Convergence_of_random_variables
+
+
+
 ### Converge almost surely {#da-converge-as}
 
-as X increments it BECOMES equal to a RV
+as X increments it BECOMES equal to a RV (or a constant?)
+
+application to strong lln (relate to prob theory)
+
+
 
 ### Converge in probability {#da-converge-prob}
 
+sequence of rvs 
+
+$$\lim_{n\to\infty}\mathbb{P}(|X_n-X|>\delta)=0$$
 as X increments the probability of the abs diff being greater than arbitrarily small positive constant goes to zero
+
+provide example
+
+application weak LLN (relate to prob)
+
+
 
 ### Converge in distribution {#da-converge-dist}
 
@@ -40,29 +58,54 @@ as X increments its distribution comes equal to that of another's
 
 a.s. --> prob --> dist. What are the differences?
 
+application to CLT
+
+
 
 ### Slutsky's theorem {#da-converge-slutsky}
+
+rewrite from notes
+
+alebraic properties of sequences of random variables
+
+what about proof? https://en.wikipedia.org/wiki/Slutsky%27s_theorem
+has to do with properties of probability spaces
+
+when is it used?
+
+
 
 
 
 ## Estimation {#da-estimation}
 
-### Estimator
+Lecture notes 2
 
-it's a FUNCTION, i.e. takes in the samples and spits out a number. the estimate is the number that's spit out. Examples: sample mean has a definite functional form
+### Estimator and estimates
+
+estimator is a FUNCTION, i.e. takes in the samples and spits out a number. the estimate is the number that's spit out. Examples: sample mean has a definite functional form
 
 ### Unbiased
 
-expectation of estimator equals the parameter. 
+expectation of estimator equals the parameter. doesn't make statments about sequence or adding more observations
 
 do examples for unbiased and biased
 
 
 ### Consistent
 
-estimator converges in probability to parameter
+estimator converges in probability to parameter. SEQUENCE of RVs --> adding more observations will increase likelihood it's close, aka reduce variance
 
 ### Mean squared error
+
+- definition
+- decomposition into variance and bias components
+- example of x1 vs sample mean
+
+### Examples
+
+- variance: w/ & w/o bessel correction, unbiased & biased, when Xis are normal biased has smaller MSE
+-  
 
 ### Method of moments
 
@@ -100,7 +143,7 @@ are there non Gibbs MCMC examples?
 
 ### Gibbs sampler
 
-used to generate samples in multi-variate cases when marginals hard to compute. uses conditional distrubions instead.
+used to generate samples in multi-variate cases when marginals hard to compute. uses conditional distributions instead.
 
 Example 1: Beta-binomial distrbution
 

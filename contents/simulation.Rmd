@@ -1,0 +1,343 @@
+# Simluation {#sim}
+
+- Acceptance/rejection algo
+- Antithetic variable
+- Moment matching
+- Control variates
+- Importance sampling
+- Copula - what is its use
+
+## Monte Carlo integration {#sim-generating-mc-integration}
+
+TRICK: relate integration with expectation - how?
+
+  - function of random variable where rv is uniform
+  - pdf f(x) of uniform is:
+  - expectation of that function
+  - see IEOR+E4703+Lecture_1
+
+Strong LLN (relate to prob theory), unbiased, consistent, relate to data analysis
+examples 1d and 2d
+non-uniform joint density: generate samples from joint density, apply function, take average
+
+
+
+## Generating univariate random variables {#sim-generating-rv}
+
+All techniques rely on being able to generate U(0,1) iid samples
+
+### Inverse transform method {#sim-generating-rv-inverse-transform}
+
+invert CMF/CDF of RV, SHOW LOGIC
+- IEOR+E4703+Lecture_1
+- IEOR+E4703+Lecture2
+
+- Discrete
+  - show logic of generating samples
+  - geometric from uniform
+  - poisson from uniform
+
+- Continuous
+  - 2 methods: using inv(F) or the min logic from discrete
+  - Exponential from uniform: uses inv(F)
+  - custom piecewise pdf example
+  - simulate max (order statistics) example
+  - doesn't work for normal dist b/c inv(F) not computable
+  - second example of when can't compute inv(F)
+    - possible solution is to compute numerically
+
+
+
+### Composition method {#sim-generating-rv-composition}
+
+applies to cases when CDF of RV interested in generating can be represented as sum of component CDFs
+
+- IEOR+E4703+Lecture3
+
+- hyperexponential
+- returns of sequential investment strategy
+- generating samples of losses
+- investment in portfolio of defaultable bonds
+- generate uniform distribution over 2d
+
+
+### Acceptance-rejection method {#sim-generating-rv-acceptance-rejection}
+
+used when inv trans (doesn't require CDF or its inverse) or composition is hard
+relies on simulating another variable that is easier to simulate
+accept a sample according to criterion that relates the pdfs of the two variables
+SHOW PROOF: requires solving for a constant $a$
+- IEOR+E4703+Lecture3
+
+- beta
+- efficiency of algo (discussion of N)
+- application to discrete RVs
+- lognormal/normal
+  - generate normal, then exponentiating
+  - can be used to simulate option prices
+  - use reflected exponential distribution
+  - solve for a
+  - see slides for rest
+  - expected number of uniforms until valid sample
+  
+  
+
+
+### Generating iid std normal RVs {#sim-generating-rv-normal}
+
+- box-muller method
+  - two uniforms to get two iid normals
+  - SHOW PROOF: requires change of variables & polar coordinates (reference calc)
+- polar method
+  - doesn't involve sin/cos from box-muller
+  - generates uniforms over -1 1 in 2d
+  - defines variable that is the sum of squares
+  - coefficient $\sqrt{\frac{-2\log\left(S\right)}{S}}$ scales the -1 1 sample 
+  - SHOW PROOF: normalized radius, radial projection, https://en.wikipedia.org/wiki/Marsaglia_polar_method, not in class notes, is it in written notes?
+- rational approximations
+  - inverse CDF of normal not calculable
+  - for values of u between 0.5 and 1, there's a rational (x/y) form that pretty close (within known error) that uses some pre-defined constants
+
+
+
+## Monte Carlo for expectation
+
+- theory
+- example: portfolio evaluation (ex. prob it drops by more than 10%)
+
+
+
+
+## Generating correlated random variables {#sim-generating-corr-rv}
+
+- IEOR+E4703+Lecture4_simulated+correlated+rvs_
+
+### correlated normal
+
+- cholesky decomp of covar matrix
+- multiply that by vector of std indep normals to get vector of correlated
+- application to correlated brownian motions (related to stoch calc)
+- example of portfolio valution with correlation
+
+### correlated general
+
+- joint cdf fully specified
+- method of conditional distributions (is this conditional MCMC in data analysis?)
+  - first generate x1, then x2 from conditional distribution
+- copula method:
+  - generate correlated normal from prev section
+  - convert to uniform by taking CDF
+  - resulting uniforms will be correlated
+  - convert uniforms to desired marginal distribution via inverse CDF of desired
+  - example: generating correlated exponential RVs
+  - general notation
+  - sklars theorem
+
+## Simulation of stochastic processes {#sim-stoch-proc}
+
+
+### Discrete-time stock price model
+
+
+### Asian options
+
+- define payoff
+- simulate stock path - only needed at observation times
+- example matlab file
+
+
+### Ito diffusion processes
+
+- give general form (drift and vol functions of time and underlying)
+- Euler method
+  - discretizes
+- Laperti transform
+  - used to transform process in special case where SDE has particular form
+  - diffusion stabilizing transform
+  - used to cancel out coeff on brownian term
+  - example for GBM
+- Constant elasticity of variance model
+  - like GBM, but stockprice on vol raised to power
+  - relate to Term structure or implied vol
+-Ornstein-Uhlenback model
+  - aka Vasicek
+  - mean reverting
+  - related to stoch models & calc
+  - simulated via euler in matlab example
+- Cox-Ingersoll-Ross model
+  - another mean reverting
+  - relate to term structure or implied vol
+- Poisson proccess {#sim-stoch-proc-poisson}
+  - relate to stoch models, prob theory
+  - simulation steps given in class notes
+  - simulated via euler in matlab example
+- Non-homogeneous Poisson process
+  - non-constant intensity rates
+  - updates intensity at each iteration in simulation
+- Jump diffusion process
+ - relate to implied vol
+ - first simulate number arrivals
+ - then simulate jump size for each arrival
+ - generate stock price based on explicit solution
+
+
+## Determining number of samples to run
+
+- using CLT know distribution of error
+- select N s.t. prob of error being greater than some constant
+- in practice mean and var unknown, so run a few (100) samples to estimate them, then compute N on the back of that
+- that N is used to calculate the confidence interval
+
+
+## Variance reduction methods {#sim-var-red}
+slides 3
+
+### Control variates {#sim-var-red-control-variates}
+
+- select another RV (called control variate) whose corr with target <>0 and expectation is known
+- define a third variable as a function of the first two
+- solve for optimal c, which requires estimating cov (pilot run) and var if unknown
+- can have multiple control variates
+  - selecting c*s: interpretation via linear regression (relate to linalg)
+- example: asian option
+
+### Antithetic variates {#sim-var-red-antithetic-variates}
+
+- generate negatively correlated samples 
+- example with uniform: U & 1-U
+
+
+### Conditional Monte Carlo {#sim-var-red-conditional-mc}
+
+- simulate another RV that's easy to simulate and has an explicit form to get conditional expectation of target variable
+- take average
+- toy example (page 15)
+- example: exotic option
+
+### Importance sampling {#sim-var-red-importance-sampling}
+
+- used to estimate rare events
+- variance reduction
+  - how big
+  - maximum matching to pick g(x)
+  - tilted density to pick g(x)
+- importance sampling for conditional expectation
+- example: asian option pricing
+- example: down-and-in
+  - normally use conditional MC
+  - but can use IS
+  
+
+### Stratified sampling {#sim-var-red-stratfied-sampling}
+
+used to estimate the mean of an RV
+prove variance reduction
+$I$ is strata - mutually exclusive & exhaustive
+
+- example: uniforms
+- example: asian option pricing
+
+
+
+## estimating sensitivities for options
+slides 4
+
+### finite difference method
+
+- re simulate RV with perturbation in parameter
+- ex. stock price bump
+- forward vs. central difference bias
+  - discussion of further central differences
+
+### Pathwise derivative method
+
+- for each sample of RV (option price), compute deriv wrt to sensitivity variable
+- requires exp and differentiation operaters to be allowed to interchange (when will it not hold? dicontinuities)
+- example delta
+- example vega
+- example asian delta
+- example asian vega
+- example digital option delta - doesn't work b/c discontinuity
+- general diffusion processes
+  - differentiate Euler scheme
+
+
+
+### likelihood ratio method
+
+Estimating+Greeks+by+MC+Simulation
+
+- write option price as expectation of function of RV
+- write expectation as integration
+- suppose differentiation for greek and integration of expectation can be interchanged
+- then blah blah
+- works even if payoff discontinuous
+- score function (IS THIS RELATED TO STOCH CALC CHANGE OF MEASURE?)
+- example: delta black-scholes general payoff
+- example: vega
+- example: asian delta
+- example: asian vega
+- 2nd derivatives
+  - ex b-s gamma
+  - combined methods
+    - LR-PW
+    - PW-LR
+    - mixed estimator
+- conditional MC & LRM
+- spread option
+
+
+
+
+## Risk management applications
+slides 5
+ultimately want probabilty that loss greater than some value
+
+- VaR (relate to foundations of FE)
+- delta-gamma approx used to accelerate simulation of losses
+- example: stock CHANGES are correlated multivariate normal
+- importance sampling 0 used to modify delta-gamma approach
+  - for variance reduction?
+- exponential twisting
+  - likelihood ratio from above
+- portfolio of options
+  - delta gamma
+  - exp twisting: simulate from
+- credit portfolios
+  - independent defaults
+  - dependent defaults
+  - conditional default probabilities
+  - homogeneous large portfolio approx
+  - conditional exponential twisting
+  - simulation algo
+  - importance sampling
+    - non-zero mean to generated normals
+
+## American options
+slides 6
+
+- regression-based method approximates continuation value by regression
+- start by simulating paths over grid (NOT a tree)
+- do terminal condition
+- backward induction
+  - continuation values from basis functions - linear regression
+  - value is max of continuation or exercise
+  - work backward
+- Longstaff-Schwartz method for american options
+
+
+## Pricing under stochastic volatility
+slides 7
+
+- implied deterministic vol
+- stoch vol models (relate to implied vol)
+  - lognormal (Hull-white)
+  - OU (stein-stein, scott)
+  - CIR (heston)
+- uncorrelated stoch vol
+  - simulate paths of Y (vol) only
+- correlated stoch vol
+- leveraged ETFs
+  - price dynamics of managing the ETF
+  - options on ETFs
+  - moneyness scaling: link implied vols of ETFs and LETFs

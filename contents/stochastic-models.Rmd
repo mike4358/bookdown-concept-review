@@ -46,7 +46,7 @@ Topic list:
   - properties
     - brownian bridge
     - integral of BM
-    - intergration by parts trick
+    - integration by parts trick
     - it's markov - next value indep of all previous
     - it's a cont time martingale - E[X(0)] == E[X(T)]
   - variations
@@ -58,7 +58,7 @@ Topic list:
   - example: black scholes pde
   - relation to Diffusion processes
   - drifted BM
-  - OU - solution
+  - OU - solution, relate to simulation
   
 - stoch calc
   - box calc

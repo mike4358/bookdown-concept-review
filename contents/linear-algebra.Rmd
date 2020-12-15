@@ -7,11 +7,13 @@
 - Characteristic equation of matrix 
 - Positive semidefinite/positive definite
   - relation to cholesky (psd always cholesky decomposible)
+  - how can i tell if psd
 - LU decomp
 - Cholesky decomp
   - Application for monte carlo simulation for correlated random normal
 - PDP decomp
 - QR decomp
+- UDU decomp?
 - Diagonalization
 - Eigenvalues & Eigenvectors: needs square
 - Singular Value Decomposition (SVD)
