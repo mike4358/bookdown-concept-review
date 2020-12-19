@@ -15,7 +15,7 @@
   - Generator
   - Jupyter
   - Immutable
-  - Range vs. xrange
+  - Range vs. xrange, iterators, list(range()), https://www.geeksforgeeks.org/range-vs-xrange-python/
   - Re-write EWMA in python
   - Pandas
   - NumPy

@@ -9,6 +9,7 @@
   - Ex. integral of $\ln{x}$
   - ex. application to compute variance of integral of BM
   - prob in poisson process
+- log rules
 - Euler's formula
 - Geometric series - substitution trick
   - Applications: trend weight normalization
@@ -19,21 +20,10 @@
 - First order condition
 - Lagrange multiplier
 - gradient
-- hessian
+- hessian, jacobian (relate to linalg)
 - curl
 - triangle inequality
 - trapezoidal rule in integration
 - polar coordinates (reference box mueller in foundations, normal distribution in prob theory)
 - L'Hopital's rule
-
-## Example of equation reference
-
-Equation \@ref(eq:example-1-equation)
-
-## Example of section reference
-
-Section \@ref(examples-section-1-subsection-1)
-
-## Example of cross-reference (hyperlink)
-
-[Normal Distribution](#prob-continuous-dist-normal)
+- change of variables

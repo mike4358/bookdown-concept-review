@@ -33,6 +33,7 @@
 - Look for games to start over again
 - Wald’s Equality
 - Jensen's inequality
+- cauchy inequality: cov^2 <= var x var y
 - Linearity in independent variances, non-indep corr triangle
   - Diff between 0 corr and independence
   - Relation to Linear Algebra
@@ -45,6 +46,7 @@
 - error function (erf, used in applications programing var of robust arb model) https://en.wikipedia.org/wiki/Error_function
 - indicator expectation - probability relation (see Foundations of FE black scholes)
 - joint distribution, marginal distribution, conditional distribution
+- quantile
 - add ross citation
 [@ross2014]
 
@@ -53,7 +55,7 @@
 ## Continuous Distributions {#prob-continuous-dist}
 
 ### Normal distribution {#prob-continuous-dist-normal}
-bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation to binomial tree, sums are normal
+bivariate, multi-variate (relate to mvo in data analysis, stoch?), cholesky decomp of covar (relate to lin alg), relation to binomial tree, sums are normal, cdf used in confidence interval (data analysis)
 
 ### Lognormal distrbution
 
@@ -61,7 +63,8 @@ bivariate, multi-variate, cholesky decomp of covar (relate to lin alg), relation
 
 ### Beta distribution 
 
-### Gamma distribution 
+### Gamma distribution
+relation to chi square, inverse gamma (data analylsis mvo)
 
 ### Exponential distribution
 memoryless property application, relation to geometric, hyperexponential (pdf is sum of exponential parameters, releate to simulation)
@@ -86,9 +89,22 @@ relation to binomial, poisson process
 ### Beta distribution
 relate to simulation accept/reject algo
 ### Chi-squared distribution 
-sum of indep std normals, relation to gamma distrbution
+
+sum of indep std normals, relation to gamma distrbution, relation to F test, likelihood ratio test
+
 ### Student-t distribution 
+
+
+### F distribution
+
+https://en.wikipedia.org/wiki/F-distribution
+
+
 ### Wishart distribution 
+
+from data analysis
+relation to gamma and chi square from there
+
 ### Inverse wishart distribution
 
 ## Law of large numbers {#prob-lln}

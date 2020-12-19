@@ -80,100 +80,1080 @@ when is it used?
 ## Estimation {#da-estimation}
 
 Lecture notes 2
+HW1
 
-### Estimator and estimates
+### Estimator and estimates {#da-estimation-estimators-estimates}
 
 estimator is a FUNCTION, i.e. takes in the samples and spits out a number. the estimate is the number that's spit out. Examples: sample mean has a definite functional form
 
-### Unbiased
+- IEOR_4709_Data_Analysis_2015_Spring_Week01_1
+
+### Unbiased {#da-estimation-unbiased}
 
 expectation of estimator equals the parameter. doesn't make statments about sequence or adding more observations
 
 do examples for unbiased and biased
 
 
-### Consistent
+### Consistent {#da-consistent}
 
 estimator converges in probability to parameter. SEQUENCE of RVs --> adding more observations will increase likelihood it's close, aka reduce variance
 
-### Mean squared error
+### Mean squared error {#da-estimation-mse}
 
-- definition
+- IEOR_4709_Data_Analysis_2015_Spring_Week01_2
+- mathematical definition
 - decomposition into variance and bias components
 - example of x1 vs sample mean
 
-### Examples
+-Examples
+  - variance: w/ & w/o bessel correction, unbiased & biased, when Xis are normal biased has smaller MSE, relate to shrinkage estimators
+  - mean of samples of uniform distribution: point is sample mean estimator not always best estimator of population mean, it's best when samples are normally distributed (relate to Cramer Rao inequality)
 
-- variance: w/ & w/o bessel correction, unbiased & biased, when Xis are normal biased has smaller MSE
--  
+### Method of moments {#da-estimation-mom}
 
-### Method of moments
+- used to find estimators by matching population moments with sample moments to solve for parameters
+- is it the case that you need as many moments as parameters (ex. normal is two, poisson is one?)
+- example iid normals, show proof
+- example poisson, show proof: in the end solve for lambda
 
 
 
-### Maximum likelihood estimators (own section?)
+
+## Maximum likelihood estimators {#da-mle}
+
+Lecture 2
+HW 1, HW 2
+
+- motivation
+  - given sample of observations, find the conditional likelihood that the generating process has a parameter value
+  - need to specify/guess the generating distribution (ex. normal, exponential)
+  - fixing parameter, likelihood is prob density of X (why)
+- example iid normal
+  - samples need not be iid generally
+  - in this case they are, and they're normal, so the likelihood is the product of the normal densities (density = height of pdf, why?)
+    - independence means can take simple product
+    - identically distributed means that don't have to worry about mu or sig changing over different observations
+  - could try to max the likelihood directly, but log is taken first
+    - log preserves maximization
+    - gets rid of exponent
+    - why else?
+  - see IEOR_4709_Data_Analysis_2015_Spring_Week01_2 for taking finding max
+    - essentially use first order condition for each of the parameters, separately
+    - solve for param in terms of observations x
+- truncated poisson example
+  - again iid, but only one param lambda
+  - same step as iid normal - take log likelihood the FOC
+  - see class notes
+
+### Properties of MLE for iid samples
+
+- theta hat is the mle from the assumed distribution (like iid normal)
+- consistency: converge in prob
+- asymptotic normality: converge in distribution to standard normal vector
+  - see IEOR_4709_Data_Analysis_2015_Spring_Week02_1
+  - based on based on inverse of fisher info matrix - rlation to variance
+- asymptotic efficiency: achieves cramer rao bound asymptotically
+- invariance: any function of the true param, function of the mle is the mle
+  - see delta method
+- consistency example: GBM
+  - IEOR_4709_Data_Analysis_2015_Spring_Week02_2
+  - stock GBM, unknown mu and sig
+  - apply ito's lemma (relate to stoch)
+  - find mle for nu and sig squared
+  - discretize the log stock price and see increments are iid normal with mean and var (functions of nu, sig squared, and time step size)
+  - use log likelihood for iid normals, substituting in for mu and sig
+  - take FOC, solve for nu, sig squared in terms of x and timestep size
+  - consistency
+    - fix timestep size and send n to infty then nu and sig squared consistent
+    - fixing Time and sending timestep size to 0
+      - nu mle is a constant (not consistent)
+      - sig sq mle converges
+      - show math
+      - conclusion: high frequency data improves accuracy of estimation of GBM vol, but not mean
+      - mean blur
+
+### Delta method
+
+- application of invariance property of mle (make reference)
+- ex. already estimated vol from stock returns and want to estimate option price
+- ex. already estimated mean and var of stock and want to estimate strategy
+- give the formula - why is it true?
+- any examples?
 
 
 ### Fisher information matrix
 
+- see IEOR_4709_Data_Analysis_2015_Spring_Week02_1
+- definition: minus expectation of 2nd deriv of log likelihood wrt parameter(s), why?
+- identity: expectation of 1st deriv is 0, show proof: when can diff & int be interchanged?
+- alternative: variance of 1st deriv, show proof
+- uses
+  - cramer rao inequality
+  - bayesian statistics: jeffreys prior
+  - wald test
+  
+  
 ### Cramer-Rao inequality
 
+- see Proof_Cramer_Rao_Inequality
+- formula & proof - how is var related to MSE?
+- provides lower bound for MSE of unbiased estimators
+  - what happens if biased? relate to decomp into variance and bias components from earlier
+- example iid normals
+  - see IEOR_4709_Data_Analysis_2015_Spring_Week02_1
+  - compute fisher info wrt only mu
+  - sample mean estimator achieves lower bound for possible MSEs for iid normals, therefore its the best unbiased estimator
+  - for other distributions, lower bound may not be achievable
 
-### Example: GBM
 
+
+### Confidence intervals
+
+- interval estimator
+- coverage probability
+- confidence coefficient
+- confidence interval
+- example: constructing CI for iid normal
+  - see IEOR_4709_Data_Analysis_2015_Spring_Week02_1
+  - know MSE for mu (sample mean) and sig (non-bessel sample var) from earlier
+  - unknown mu, known sig
+    - do the math - from def of cdf of normal (prob theory)
+    - separate out mu in prob function
+    - set c (critical value, determined by significance level (type I error) of the test)
+  - unknown mu, unknown sig
+    - use sample variance (why not MLE/ b/c it's biased?)
+    - the sum of demeaned x's follows chi-square distribution & is indep of X_bar (prove)
+    - blah blah
+    - how does student's t come about? https://en.wikipedia.org/wiki/Student%27s_t-distribution#Characterization
+    - finish out building the interval using critical values from t-dist
+- general form for CIs in terms of fisher info matrix
+  - prove formula/intuition
+
+### Estimating Fisher information matrix
+
+- method 1: calc analytically, get mle
+- method 2: if can't calc, drop the expectation from fisher info
+- method 3: if can't calc, sum of squared 1st partials
+- example: income vs. education
+  - find conditional likelihood
+  - take log
+  - FOC
+  - solve for param in terms of x
+  - take second order deriv
+  - take minus of expectation to get fisher info matrix
+  - estimate according to 3 methods
+  - construct confidence interval using general form from previous section
+  
 
 
 ### Expectation-maximazation algorithm
 
-example: Mixed normal model 
+- see IEOR_4709_Data_Analysis_2015_Spring_Week02_2
 
-supposes a distribution. introduces latent variable to solve
+- supposes a distribution. introduces latent unobserved variable to solve
+- E step
+- M step
+- example: Mixed normal model
+  - iid mixed normal
+  - derive likelihood - 1/2 chance baked in, variances of 1 drop many terms
+  - take log - log doesnt distribute to terms
+  - getting foc would be hard
+  - TRICK: instead introduce Z that takes 0 1 with success rate 1/2
+  - can rewrite inner prob as func of Z
+  - easier to take log
+  - Z's not observable, so use Ys to estimate
+  - do the math, see the R code, Homework 2 question 3
+  
+- likelihood of iterations if condition holds
+- it converges under some other conditions
+  - see Proof_Monotone_EM_Sequence
+
+
+
+
+
 
 
 ## Hypothesis testing {#da-hypothesis}
 
+Lecture 3
+HW 3
+
+- Hypothesis test
+  - built off of confidence intervals from previous section (create link)
+  - example given for iid normals with unknown mean and variance (t-distribution)
+    - want to test if mean mu is equal to 0
+    - type I error: wrongly reject null
+    - type II error: wrongly accept null
+    - formulas given in the context of t-distribution: understand & show
+    - IEOR_4709_Data_Analysis_2015_Spring_Week03_1
+  - generalization of iid normal example
+    - uses set notation - UNDERSTAND get intuition
+      - null hyp
+      - alternative hyp
+      - rejection region
+      - type I error: 
+      - type II error:
+    - can't minimize both error types at once - usually control type I
+    - null and alternative not symmetric - not rejecting null <> accepting null 
+      - look up and provide example
+      - https://statisticsbyjim.com/hypothesis-testing/failing-reject-null-hypothesis/
+  - significance level - defined to be type I error, usually specified by tester
+  - test statistic W(X) - used in defining the rejection region for the test along with critical value c (which is determined by the significance level (type I error))
+    - need to know distribution of test statistic W(X)
+    - in the case of iid normals w/ unknown mean & var, test statistic for mean test was sample mean - null mu scaled by sample variance scaled by root n
+  - one-side hypothesis example
+    - IEOR_4709_Data_Analysis_2015_Spring_Week03_1
+    - iid normal w/ unknown mean and var
+    - null is mu <= mu_0
+    - alternative is mu > mu_0
+    - use previously mentioned test statistic for iid normal unknown mean & var
+    - reject null iff W(X)>c 
+    - show final math relating prob to t-distribution
+    - type I error is based on t-dist
+    - significance level set to 5%, can calc c
+    - reformulate test relating sample mean to mu_0 and t-dist
+  - efficiency of tests
+    - one param
+      - mle asymptotically normal (see properties of MLEs)
+      - use sqrt of fisher info * (mle - null) as test statistic (relate to test statistic for iid normals)
+    - multiple params
+      - what to do?
+    - fixing significance level (type I), minimize type II error
+  - Likelihood ratio test
+    - tests hypotheses based on likelihoods
+    - neyman-pearson lemma: likelihood under null divided by likelihood under alternative compared to critical value (were c defined by significance level) has smallest type II error among all tests with the same significance level. proof? https://en.wikipedia.org/wiki/Neyman%E2%80%93Pearson_lemma
+    - motives likelihood ratio test: reject null if ratio small enough
+    - take log then *-1 and use that to define test statistic: aka maximize log likelihood ratio
+    - example: iid normal w/ unknown mean & unknown var
+      - IEOR_4709_Data_Analysis_2015_Spring_Week03_1
+      - want to test mean: null mu=mu_0
+      - log likelihood given for
+        - mu_0
+        - alternative
+      - after crunching, can get simple form for test statistic
+      - relation to earlier test-statistic for iid normal
+      - understand logic to show that LR test-statistic follows chi-square(1) dist
+      - critical value c calculated from sig level and chi-square dist
+    - generally finding distribution used to calculate critical value from significance level
+      - likelihood ratio test statistic converges to chi-squared distribution under regularity conditions
+      - degrees of freedom of dist are difference in dimensions of all params vs. under null
+      - PROOF?
+  - other hypothesis tests
+    - wald test
+    - lagrange multiplier test
+    - likelihood ratio and above two tests have same asymptotic distribution
+    - Engle (1984), \Wald, Likelihood Ratio, and Lagrange Multiplier Tests in Econometrics"
+  - p-values
+    - above hypothesis test require significance level, threshold (critical value?), and statistic value to be reported
+    - motivates formula for p(x)
+    - given realized sample, p(x) is related to resampling under null
+    - given a sig level, reject null if p(X) <= sig level
+    - only need to report that
+    - understand
+  - example: ratings momentum
+    - IEOR_4709_Data_Analysis_2015_Spring_Week03_2
+    - hyp: upgrades followed by upgrades, downgrades followed by downgrades
+    - understand problem setup with notations (indicators etc)
+    - look at only firms that just received upgrades
+    - derive MLEs 
+    - blah blah asymptotic normality under null - understand this
+    - eventually get a formula for a likelihood ratio test
+    - distribution for critical value is normal (from the asymptotic?)
+    - compute p-values
+  - categorical data
+    - Likelihood Ratio Chi-Square Test
+      - relate to foundations of FE (likelihood ratio) & prob theory (chi-square)
+      - IEOR_4709_Data_Analysis_2015_Spring_Week03_2
+      - samples drawn from iid discrete distribution
+      - discretely distributed samples grouped into categories
+      - probabilities sample belongs to a given category
+      - defines parameter space
+      - blah blah
+      - eventually get test statistic
+      - asymptotic distribution is chi-squared dist with df = # groups - 1 - dimension of params PROOF
+    - Pearson's Chi-squared test
+      - uses taylor expansion to reformula LR chisquared test stat
+      - in both can replace MLEs with method of moments (add ref)
+    - example: fitting trading data
+      - IEOR_4709_Data_Analysis_2015_Spring_Week03_2
+      - TradingData.R
+      - null is poisson
+      - plug and chug for LR and pearson chi square tests
+      - cannot reject null that data are poisson
+    - example: insurance claims
+      - another plug and chug
+      - both tests reject null poisson hyp
+      - Polya process see HW3
+        - uses method of moments to find estimators
+  - Normality tests
+    - generally want to test if iid samples come from distribution F
+    - IEOR_4709_Data_Analysis_2015_Spring_Week04_1
+    - QQ plot
+      - empirical quantile vs. theoretical quantile
+      - given iid samples
+      - used to test null: samples are drawn from uniform(0,1)
+      - sorts observations - if null is true then make statement about expectation of the ordered observation
+      - using inverse CDFs can test distributions other than uniform
+      - plots theoretical vs. ordered observed
+    - kolmogorov-smirnov test
+    - jarque-bera test: test statistic based off of sample skewness and kurtosis - proof?
+    - shapiro-wilk test: test statistic based off of observations, sample mean of them and functions of rankits
+
+
 
 ## Baysian statistics {#da-bayseian}
+
 Lecture 4
-conguate priors
+HW 4
 
-### Markov chain Monte Carlo
+- frequentist vs baysian
+  - freq: params fixed, repeatable data
+  - bayes: params unknown, data fixed
+  - example: urn draws
+    - bayesian is about conditional probabilities, 
+    - not sure how this example illustrates freq vs. bayes
+- bayes rule
+  - IEOR_4709_Data_Analysis_2015_Spring_Week04_1
+  - prior denisty given
+  - joint dist of param and sample given
+  - conditional prob of sample given param given
+  - relation to likelihood
+  - posterior of param after observing sample
+- point and interval estimates
+  - estimation based on posterior belief
+  - point estimates
+    - mean
+    - median
+  - interval
+    - based on integrals
+  - compute or simulate (see MCMC) the posterior
+    - IEOR_4709_Data_Analysis_2015_Spring_Week04_2
+    - example: Bernoulli
+      - iid bernoulli with success rate with prior of beta
+      - conditional prob given
+      - apply the rule
+      - see that posterior is also beta
+      - calc posterior point estimate of param
+      - interval estimate based on beta dist
+      - relate to conjugate prior?
+      - application to financial crises
+        - frequentist
+        - bayesian with uniform prior
+    - example: interval estimates
+      - frequentist CI
+      - baysian: ?
+      - IEOR_4709_Data_Analysis_2015_Spring_Week04_2
+- conjugate
+  - family of distributions conjugate wrt a likelihood if for any prior, the posterior is in same family
+  - facilitates computation of posterior
+  - ex iid normals with unknown mean and KNOWN variance
+    - prior is normal
+    - likelihood is product of normal pdfs due to iid
+    - posterior is also normal (but with different parameters)
+    - compute point estimate and construct CI
+    - IEOR_4709_Data_Analysis_2015_Spring_Week04_2
+- choosing priors
+  - conjugate to likelihood
+  - subjective
+  - estimate priors from data; empirical bayesian (see MVO section)
+  - non-informative
+    - invariant to choice of param
+    - relate to bernoulli samples case
+    - jeffrey's prior
+      - IEOR_4709_Data_Analysis_2015_Spring_Week04_2
+      - based on fisher info matrix
+      - example: iid normals unknown mean known variance
+      - example: bernoulli samples
+      - proof/motivation?
+- hypothesis testing
+  - bayesian computes prob param in null vs not null given samples
+  - example?
 
-are there non Gibbs MCMC examples?
+### Markov chain Monte Carlo (MCMC) {#da-bayseian-mcmc}
 
-### Gibbs sampler
+- used to simulate posterior distribution
+- in all examples, a generative model is assumed. the technique is used to 
+- are there non Gibbs MCMC examples?
+- https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo
+- gibbs sampler
+  - used to generate samples in multi-variate cases when marginals hard to compute. uses conditional distributions instead. relate to prob theory
+  - IEOR_4709_Data_Analysis_2015_Spring_Week05_1
+  - samples will eventually be drawn from marginal distributions, so can find point estimates of params by taking sample mean
+  - example: beta-binomial distribution
+    - given joint density
+    - want marginal (is it hard?)
+    - calculate conditional distributions instead
+      - beta
+      - binomial
+      - proof from class notes
+    - generate sample sequentially across the two variables
+    - for large j, get marginals & joint - see Proof_Convergence_MCMC (ergodic theory)
+  - example: normal hierarchical model
+    - 3 variables: mu, vector of returns, vector of thetas (in this case unknown means?)
+    - understand problem setup better
+    - iid normals with unknown means and known variances
+    - mu has flat prior (proportional to 1 - why?)
+    - want distribution of mu given returns
+      - difficult to compute - why?
+    - instead use conditional distributions 
+      - mu given R, theta (posterior normal)
+      - theta, given mu, R (posterior normal)
+      - do derivation for both (see class notes)
+    - generate samples
+  - HW4
 
-used to generate samples in multi-variate cases when marginals hard to compute. uses conditional distributions instead.
 
-Example 1: Beta-binomial distrbution
-
-Example: Normal hierarchical model
 
 
 ## Asset allocation {#da-asset-alloc}
 
-wishart & inverse wishart distributions - relation to gamma dist - used for model for cov matrix?
+Lecture 5
+AssetAllocation.R
+HW5
 
-### Shrinkage estimators
+- MVO
+  - min var formulation
+  - efficient frontier
+  - graphic solution: understand math
+  - mutual fund theorem: optimal portfolio lies along the tangency line
+  - sharpe: give def, relation to efficient frontier via max sharpe
+  - lagrange dual method
+    - reformulates the min var st return and puts return and var in obj fun (no constraints)
+    - relate to optimization dual
+    - for each target return, must exist lambda (risk appetite) st optimal solution same as original formulation
+    - IEOR_4709_Data_Analysis_2015_Spring_Week05_2
+    - using some notation and solving the first order condition, can come up with optimal weights
 
-- James-Stein
-- Jorion
-- Covariance
+\begin{equation}
+  w^{\ast} = \lambda\mathbf{C}^{-1}\mathbf{\mu}^e
+  (\#eq:da-asset-alloc-mvo-solution)
+\end{equation}
 
-non-informative prior & informative priors
+when there's no risk free asset, can be reformulated - PROOF
+relate to two-fund theorem from simulation
 
-### Empirical Bayseian
-
-
-### Black-Litterman model
-
+- estimating MVO
+  - motivation: excess returns vector hard to estimate, so is cov mat when N large, optimal weight sensitive
+  - notation: R (iid samples assumption), Re, lambda, gamma = 1/lambda, etc.
+  - plug-in estimates
+    - IEOR_4709_Data_Analysis_2015_Spring_Week05_2
+    - start with X: multi-dimensional (m number of assets) normal - relate to prob theory
+    - let X1 to Xn be n samples of iid (multidimensional normal) random vectors
+    - define Z to be the product of that m x n matrix wrt itself (result is m x m matrix, sum is over degrees of freedom which equals n)
+    - Z has Wishart distribution - relation to gamma dist - used for model for cov matrix?
+      - distribution params: dimension, degree of freedom and (invertible) scale matrix
+      - density itself: GIVE FORMULA, proof? https://en.wikipedia.org/wiki/Wishart_distribution
+      - mean is nV: proof?
+      - when dimension m (# of assets) is 1, wishart is gamma dist and further if V is also 1, then wishart is chi-square - proof
+      - also assume n >= m, aka number of samples of multidim norm greater or equal to number of assets (intuitively makes sense, but why?)
+    - sample estimators
+      - multiple dimension sample estimators
+      - switching to using t as number of observations
+      - sample mean vector: constituted of sample means of elements
+      - sample covariance matrix: outer product of return deviations (scaled by 1/(T-1))
+      - sample plug-in estimator: use multi-dimensional sample estimators in the optimal weights formula. this is the most straightforward, naive way that results in the problems mentioned earlier
+    - maximum likelihood estimators
+      - assume iid multi-d normal random vector
+      - similar to univariate case, in multivariate case MLEs for mean is sample, covar is un-bessel-corrected sample
+      - proof?
+      - can plug these in to optimal weights formula as well
+    - unbiased estimators
+      - both sample and mle plug in estimators for optimal weights are biased
+      - see IEOR_4709_Data_Analysis_2015_Spring_Week05_2 for beginning of proof
+        - for mean (sample == mle) take expectations of both sides
+        - for covar it's suggested that expectation of sample estimator is unbiased, but not for the inverse
+      - inverse wishart distributions
+        - let m x m matrix Z follow wishart
+        - define Y to be Z^-1 (matrix inversion of Z): Y follows inverse wishart distribution
+          - m, n, V^-1
+          - give density: proof?
+        - when n (# obs) >= m+2, mean exists and is given by formula: Proof
+        - when m = 1, inverse wishart becomes inverse gamma dist
+      - define S to be unscaled outer product of demeaned vector observations
+        - S is indep of sample mean
+        - S follows wishart
+        - S^-1 follows inverse wishart (assuming # obs >= dimension + 3)
+        - plug in to optimal weights formula?
+        - show relation to mle and sample optimal weight estimators
+          - IEOR_4709_Data_Analysis_2015_Spring_Week05_2
+        - re-show bias calcs using new estimators
+    - performance measures
+      - in, out sample tests?
+      - certainty equivalent (CE) loss
+        - define U as a function of obj function
+        - CE loss is the loss of using estimator w hat star (vs w star), assuming infinite repetition without learning
+    - Shrinkage estimators
+      - motivation: improve MSE?
+      - estimation of mean vector
+        - linearly allocates between sample mean and constant vector (shrinkage target)
+        - linear scaling (alpha) chosen to minimize scaled MSE (assumes C is known)
+        - James-Stein
+          - scales between sample mean and grand mean
+          - alpha chosen according to formula 
+          - Proof? intuition? https://en.wikipedia.org/wiki/James%E2%80%93Stein_estimator
+        - Jorion
+          - scales betwen sample mean and vector based on sample mean and inverse cov
+          - alpha chosen by formula
+          - proof/intuition?
+      - Covariance
+        - when C unknown, replace C^-1 with scaled sample or mle cov (WHY)
+        - can also shrink cov mat between sample cov and identity matrix
+        - no optimal alphas given
+        - https://quant.stackexchange.com/questions/11564/why-shrink-the-covariance-matrix
+  - bayesian estimates
+    - IEOR_4709_Data_Analysis_2015_Spring_Week06_1
+    - bayesian plug-in
+      - once mu and cov have been estimated using bayesian approach, can plug into optimal weights formula
+    - prediction
+      - reformulate estimation problem conditioning on observations of past returns
+      - results in mu_prdct and C_prdct
+        - mu_predct equal to mu_bayesian (show)
+        - C_prdct is a C_bayseian + an extra term (show)
+      - using bayesian estimates underestimates variance, leading to over investment in risky assets (show)
+    - non-informative prior
+      - uses jeffrey's prior (reference), based off of fisher info
+      - use bayes rule to define conditional densities
+      - do calcs from notes to eventually arrive at estimators for mu_prdct and C_prdct
+        - mu_prdct is still sample mean
+        - C_prdct is scaled C_mle
+    - informative priors
+      - assume distributions for mu given C and C
+      - get posteriors
+      - eventually get new formula for C_prdct: SHOW PROOF
+    - choosing priors
+      - subjective
+      - econ models like capm
+      - back out based on things like value weighted?
+      - empirical baysian
+    - empirical bayesian
+      - IEOR_4709_Data_Analysis_2015_Spring_Week06_1
+      - generalized formulation: understand
+      - example: estimating mu
+        - mu unknown, C assumed known
+        - prior of mu assumed to be multivarite normal
+        - likelihood of data given mu
+        - get dist of data given params of mu
+        - get mle of those params
+        - blah blah
+        - results in estimator that shrinks between sample mean and constant vector (like jorion)
+  - black-litterman model
+    - IEOR_4709_Data_Analysis_2015_Spring_Week06_2
+    - IEOR_4709_Data_Analysis_2015_Spring_Week07_1
+    - AssetAllocation.R
+    - HW 5
+    - Cov mat C assumed to be known
+    - mu follows correlated multi dim normal
+    - returns are correlated multi dim normal
+    - expert opinions statements matrix P
+    - expert opinions q
+    - noise in expert opinions eps
+    - formula relates P, mu, q and eps
+    - observe q and R
+    - know C, pi, SIG, OMEGA
+    - previous returns discarded
+    - blah blah
+    - ultimately mu given q
+    - can derive estimators for mu and C
+    - those are plugged into optimal weights formula
+    - discussion of calculating pi and SIG
+      - pi: based on market portfolio
+      - SIG: based on C at some proportion tau - logic not given
+    - further discussion
+      - things to further improve model
 
 ## Regression models {#da-regression}
 
+Lecture 6
+HW6, HW7
+Proof_Multiple_Linear_Regression?
+
+- CAPM motivation
+  - definition
+  - testing it
+- simple univariate linear regression
+  - definition
+  - objective function (relate to lin alg) min sum sq errors
+  - ols estimators
+    - beta estimator solve for beta via FOC 
+    - alpha estimator: defined in terms of beta estimator
+    - IEOR_4709_Data_Analysis_2015_Spring_Week08_2
+  - mle
+    - uses the log likelihood of iid normals - why?
+    - derive the formula
+    - take foc (wrt to beta?)
+    - get MLEs (same as OLS estimators)
+  - statistical model
+    - assumes epsilons iid following normal mean 0, sig^2 (mean zero white noise)
+    - expectation of y given x is then the linear relation
+    - define y hat to be the predicted y's
+    - then define epsilon hats as the diff between y's and y hats
+    - mle of sig^2 is then average eps hat squared - proof?
+  - experimental vs observational data
+    - lin reg assumes data fixed even for obs
+    - why is this useful?
+  - properties of estimators
+    - expectations
+    - variances
+    - covariance
+      - between alpha hat and beta hat
+    - S_rsdl
+      - sum of squared eps
+      - divided by sig^2 follows chi-square (why?)
+      - can get unbiased (vs mle) estimator
+      - show that it's indep of alpha hat and beta hat
+    - estimators minus param appropriately scaled follows t-dist 
+      - relate back to prev section
+      - can construct CIs around the estimators
+  - hypothesis testing
+    - use t-test
+  - prediction
+    - use prev derived estimators to come up with y hat new
+    - expected squared error decomoposed
+      - estimation error
+      - new noise
+  - corr vs cause
+- multivariate linear regression
+  - IEOR_4709_Data_Analysis_2015_Spring_Week08_2
+  - setup
+    - p dimensional, p > 1
+    - here, the intercept is wrapped up within the beta vector
+      - show reduction back down to univariate case
+    - beta vector estimator derived by taking FOC of obj func wrt beta
+    - define P_X matrix
+      - associated properties along with identity matrix
+      - proof?
+    - in sample prediction formula
+    - resulting espilon hat vector formula
+  - properties of OLS multi estimators
+    - beta hat unbiased
+    - esp hat zero mean
+    - beta hat and eps hat joint normal and indep
+    - var of beta hat
+    - S_rsdl
+      - definition
+      - expectation 
+      - distribution
+      - use in estimator of sig hat ^2 
+    - confidence intervals
+      - each individual beta hat demeaned scaled estimators follow t-dist
+      - construct CI
+      - t-test: individual beta hat = 0?
+      - linear combinations of beta hats can be tested at once (proof)
+    - interpretation of beta vector
+      - need ceterus paribus interpretation, holding rest fixed
+      - beta in univariate regression need not be same as beta in multivariate for given regressor
+    - sum of squares (give formulas and intuitions for each)
+      - total
+      - residual
+      - regression
+      - constant only case
+    - full vs reduced models
+      - definition & notation
+      - can create formula that decomposes reduced sum of squared resid into full and y diffs
+      - IEOR_4709_Data_Analysis_2015_Spring_Week08_2
+      - point is to show that more regressors always reduces residual sum of squares
+      - case of regressing on a constant
+    - R squared
+      - definition
+      - case if one explanatory variable a constant (intercept) (show why)
+        - new formula
+        - R2 <= 1
+      - case when no constants
+    - adjusted R squared
+      - interpretation
+      - definition (why)
+      - IEOR_4709_Data_Analysis_2015_Spring_Week09_1
+      - case when have a constant
+      - penalizes unnecessary explanatory variables
+      - how to use?
+    - F-test
+      - setup
+      - null hyp: all the additional explanatory betas = 0
+      - test statistic PROOF
+      - follows F-distribution PROOF
+      - reject null when F large
+      - interpretation 
+      - anova - https://en.wikipedia.org/wiki/Analysis_of_variance
+    - explanatory variable selection
+      - forward selection: start small and add largest F until thresh
+      - backward selection: start big, work small
+      - data snooping - https://en.wikipedia.org/wiki/Data_dredging#Multiple_modelling
+    - model selection
+      - Cp statistic (what is this?)
+      - aic (look up)
+      - bic (look up)
+- generalized linear regression
+  - dummy variables
+  - link function g
+    - used when y variables are binary
+    - when y variables are normal, g(mu) = mu
+  - logistic regression
+    - g is logit function
+    - gives prob y variable takes value 1
+    - interpretation of coefficients
+      - odds interpretation
+      - if Xj increases by one unit, odds Y=1 change by e^beta_j, all else equal
+    - IEOR_4709_Data_Analysis_2015_Spring_Week09_1
+    - mle
+      - understand likelihood formula
+      - FOC? 
+      - second order deriv shows log-likelihood concave, so can compute beta hat numerically
+      - fisher info matrix
+      - estimator of asymptotic variance of beta hat
+      - IEOR_4709_Data_Analysis_2015_Spring_Week09_2
+      - confidence interval
+      - wald test for hypothesis testing
+        - z-test
+        - null is particular beta is 0
+      - full vs. reduced
+        - likelihood ratio test
+          - refresh from LR test earlier
+          - reject reduced when test stat large
+          - follows chi square 
+        - drop in deviance test
+          - define deviance: 
+          - reduced model rejected if deviance drops significantly after new variables are added
+          - https://statisticaloddsandends.wordpress.com/2019/03/27/what-is-deviance/
+        - variable selection
+          - similar to linear regression
+        - model selection
+          - bic
+          - aic
+  - other link functions
+    - probit
+    - cauchit
+    - show comparison
+  - example: decomposition model
+
 ## Linear time series analysis {#da-linearTS}
 
+Lecture 7
+HW8, HW9
 
-## Conditional heterscedastic models {#da-heterscedastic}
+- IEOR_4709_Data_Analysis_2015_Spring_Week10_1
+- autocorrelation
+  - weak stationarity
+    - mean and autocov exist, and dont change over time
+    - notation
+    - for any starting point, lag l autocov is the same
+    - define autocov matrix for different lag orders
+      - it's psd (proof)
+      - it's positive definite if common variance > 0 and autocov goes to zero as lag increases --> invertible
+    - autocor definition
+    - sample autocov
+      - r's need to be weakly stationary
+      - basically sample cov, careful with the index
+      - sample mean taken over all obs
+      - sample autocov
+  - strong stationarity
+    - https://en.wikipedia.org/wiki/Stationary_process
+  - testing autocorrelation
+    - bartlett test
+      - tests a specific lag order
+      - null is autocorr is 0 
+      - test statistic
+      - test statistic asymptotic distribution PROOF
+      - rejection criterion
+      - case where r's are iid normal
+      - relation to acf plot
+    - ljung-box test
+      - tests joint lag orders 
+      - null is that there' all jointly zero
+      - test statistic and distibution (chi-square) PROOF
+      - rejection criterion
+- autoregressive model
+  - ARModel.R
+  - ARSimulation.R
+  - AR(1)
+    - what is the model? what needs to be solved for?
+    - IEOR_4709_Data_Analysis_2015_Spring_Week10_1.pdf
+    - definition
+    - today's return is linear function of yesterday's return + white noise
+    - abs(phi_1 <1) so that r is weakly stationary (why)
+    - conditional mean
+    - conditional var
+    - unconditional mean (see tablet notes)
+      - use stationarity to write mu in terms of coeffs
+    - unconditional var
+      - law of total var?
+      - use stationarity to write common var in terms of coeffs
+    - reformulation of AR(1) model
+    - ACF of AR(1)
+      - repeated coeff (<1)
+      - therefore autocorr decays exponentially to zero as lag increases
+    - estimation
+      - method of moments
+        - create ref
+        - phi_1
+        - phi_0
+        - sig^2_a
+      - conditional mle
+        - IEOR_4709_Data_Analysis_2015_Spring_Week10_1
+        - given certain things, r_t is normally distributed (iid?)
+        - conditional log likelihood
+        - estimators derived by maximizing
+        - same as OLS with y = r_t, x = r_t-1 PROOF
+  - AR(p) model
+    - IEOR_4709_Data_Analysis_2015_Spring_Week10_2
+    - setup & definition
+    - r_t linear function of p past r's
+    - restriction on phi's to ensure weakly stationary UNDERSTAND
+    - mean
+      - reformulation (& use?)
+    - var
+      - unconditional
+    - acf
+      - yule walker equation
+    - estimation
+      - method of moments
+        - use yule walker and sample corr to estimate phi's, sample mean to estimate phi_0, sample var to estimate sig^a
+        - conditional mle
+    - forecasting
+      - one step ahead
+        - forecasting error
+        - MSE of forecasting error
+      - l step ahead
+        - forecasting error
+        - MSE can't be calced explicitly
+      - can build fan chart? try it out
+    - model selection
+      -pacf
+        - AR(1) example: get rid of indirect relation between lag orders >2 
+      - aic/bic
+    - pacf
+      - given stationary time series
+      - partial autocor given by residuals of regression against lags 
+      - for AR(p)
+      - sample pacf
+        - can solve from acf
+        - or run regression
+        - asymptotic distribution
+    - model checking
+      - given data
+      - fit AR(p) model
+      - use ljung-box test to check if in-sample residuals white noise
+      - goodness of fit: adj R2
+  - AR(infty) model
+    - IEOR_4709_Data_Analysis_2015_Spring_Week11_1
+    - r_t is linear combination of infinite series of r's before it + white noise
+    - careful of theta, it's the same across lags
+    - show reformulation
+- moving average model
+  - IEOR_4709_Data_Analysis_2015_Spring_Week11_1
+  - MA(q)
+    - r_t depends on a constant, white noise, and linear comb of previous white noise
+      - get intuition sum of past innovations
+    - unconditional mean
+    - unconditional var
+    - autocov
+      - l > q
+      - l < q
+    - estimation
+      - uses conditional log likelihood
+      - see notes
+    - forecasting
+      - l step ahead
+      - forecasting error
+      - MSE
+    - model selection
+    - example bid-ask spread
+      - IEOR_4709_Data_Analysis_2015_Spring_Week11_1
+    - application in HW9
+      - overlapping annual returns
+      - can be represented as MA
+- autoregressive moving average model
+  - arma(1,1)
+    - IEOR_4709_Data_Analysis_2015_Spring_Week11_2
+    - ARMAModel.R
+    - depends on prev value, and prev white noise
+    - unconditional mean
+    - unconditional variance
+    - autocov
+    - acf
+  - arma(p,q)
+    - model def
+    - back-shift operator
+    - characteristic functions
+    - reformulation
+    - restrictions on characteristic functions to make r stationary
+    - AR representation
+    - MA representation
+    - PROOFS
+    - estimation
+      - conditional maximum likelihood
+        - Brockwell and Davis (2006): Theory and Methods
+    - forecasting using MA representation
+      - formula
+      - l step ahead
+      - forecast error
+      - MSE
+    - model selection
+      - ACF and PACF non-informative (WHY?)
+      - use AIC or BIC (WHY?)
+- unit root
+  - motivating example: GBM
+    - show that characteristic function has unit root PROOF
+    - autocor is one for all lags?
+  - if sample acf doesn't decay exponentially, likely unit root
+  - can test with augmented dickey fuller test
+    - PROOF
+  - difference operator
+    - definition
+    - first differences may get rid of unit root
+    - higher order differences may be needed
+    - arima(p,d,q) model
+      - d represents the number of differences taken
+      - https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average
+- trend and seasonality
+  - decomp: trend + seasonality + stationary
+  - trend removed by first diff
+  - seaonality removed by differencing the season
 
+## Conditional heteroscedastic models {#da-heteroscedastic}
+
+Lecture 8
+HW10
+IEOR_4709_Data_Analysis_2015_Spring_Week12_1
+IEOR_4709_Data_Analysis_2015_Spring_Week12_2
+
+- point is to allow for non-constant volatility
+- what happens if a_t from prev section not white noise as assumed?
+- looking at residuals of ARMA model (a_t) on s&p returns
+- uncorrelated but dependent (show this)
+- heavier tails than normal (show this)
+- autoregressive conditional heteroscedastic models
+  - ARCH(1)
+    - model for residual a_t in terms of white noise and previous residual
+    - a_t is uncorrelated mean zero series
+    - it is however, dependent
+    - variance
+    - leptokurtic feature
+      - kurtosis > 3 and is increasing wrt alpha 1
+  - ARCH(m)
+    - updated function for sig^2, depends on multiple lags of a_t
+    - properties
+  - Testing ARCH effect
+    - fit arma model
+      - choose p, q
+    - calc residual series a_t
+    - squared series used to test for arch effect
+    - ljung-box applied to a_t 
+    - lagrange multiplier test
+      - f-test in regression of a's vs its lags
+  - Quasi-AR representation
+    - definition
+    - point?
+    - IEOR_4709_Data_Analysis_2015_Spring_Week12_2
+    - ar component, ma component
+  - estimation
+    - mle: conditional log likelihood
+    - need nonlinear opt (see optimization) to solve the maximization?
+    - see ARMAGARCH.R
+  - model selection & checking
+    - selection
+      - pacf of a_t^2
+      - aic/bic
+    - checking
+      - ljung-box to check if stanardized residuals iid
+      - qq plot to check validity of assumption
+  - forecasting
+    - only need to forcast sigma
+    - one step ahead
+    - l step ahead
+- generalized autoregressive conditional heterscedastic models
+  - GARCH(m,s)
+      - model for residual a_t in terms of white noise and previous residual and previous sigma (need to understand notation)
+      - properties of a_t
+      - common variance
+      - write out garch(1,1)
+  - ARMA representation 
+    - substitute
+    - what is the point?
+  - estimation, model selection, model checking
+    - conditional mle (fGarch?)
+    - aic/bic
+    - checking similar to arch
+  - forecasting
+    - similar to arma model
+    - ex. GARCH(1,1)
+      - 1 step ahead
+      - l- step ahead
+  - see ARMAGARCH.R, GARCHAnalysis.R, HW 10
+- stochastic volatility model
+  - conditional variance in garch deterministic - function of past a_t and sigma^2
+  - in this, conditional variance involves new innovation 
+  - see Tsay book?
 
 ## Principal component analysis and factor analysis {#da-pca-factor}
+
+Lecture 9
+HW 10
+- IEOR_4709_Data_Analysis_2015_Spring_Week13_1
+
+### Principal component analysis {#da-pca-factor-pca}
+
+- find sequential orthogonal linear combinations of the data that explain the most variance
+- application to return series of N assets
+- look at covariance matrix
+  - N eigenvalues & N eigenvectors
+  - define eigenvectors 
+  - diagonal matrix of eigenvalues
+- proportion of total variance
+  - show proof
+  - proportion of total var explained ith PC is ratio between ith eigenvalue and sum of all eigenvalues
+- with correlation matrix
+  - equiv to covar matrix where returns vectors have been scaled by the squareroot of their variances - show this
+  - use is for when variances of different assets very different - pca on cov will unduly be dominated by a super volatile asset
+- determinting # of PCs to use
+  - cumulative proportion of total variance
+  - when using corr, set threshold for eigenvalues (why?)
+- relate to lin alg - show how to find sequentially orthogonal
+- cholesky decomp?
+
+### Factor analysis  {#da-pca-factor-fa}
+
+- define model
+  - univariate
+  - multivariate (panel)
+- factors are external to returns and chosen by modeler
+- understand the various assumptions - they are used in deriving bounds (see petersen paper?)
+- example capm, arbitrage pricing theory, others
+- estimation
+  - covariance matrix of returns related do covariance matrix of factors (why?)
+  - if factors given, estimated via multiple linear regression
+  - if coefficients given, can estimate the factors
+    - f estimated cross sectionally, D time series
+    
+### Statistical factor analysis  {#da-pca-factor-sfa}
+
+- used to come up with statistical factors from data directly
+- data assumed have no serial correlation (==stationary?)
+  - can use linear time series analysis to remove
+- assumptions
+  - list them out
+  - how are they used
+- covariance matrix of returns not related to covar matrix of factors
+- not identifiable
+  - any orthogonal matrix
+  - understand logic
+  - motivates rotation 
+    - varimax- designed to maximize shared variance
+    - promax
+- estimation
+  - PC method
+    - estimate sample covar matrix from returns
+    - select m eigenvalue eigenvector pairs
+    - for each of them define the factor & loading according to the formula (why?)
+    - D (vols of the errors) is estimated from above (why?)
+    - estimation error bounded by sum of squares of neglected eigenvalues
+    - how to pick m? 
+  - maximum likelihood method
+    - done by stats::factanal in R
+    - additionally assume factors and errors are jointly normal
+    - if so, then the returns are multivariate normal and have cov matrix defined by loadings and D (why?)
+    - estimate loadings and D using mle under some constraint (why?)
+    - models correlation matrix
+- how many to pick?
+- see R code, Tsay?, IEOR_4709_Data_Analysis_2015_Spring_Week13_2

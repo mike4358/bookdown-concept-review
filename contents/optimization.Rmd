@@ -108,8 +108,8 @@
     - convex QP
     - equality constrained
       - solve in steps
-      - ex. simple mean-var portfolio
-      - two fund theorem
+      - ex. simple mean-var portfolio (relate to applications programming, data analysis)
+      - two fund theorem (relate to two fund theorem from data analysis)
     - inequality constrained
       - solve via active set algorithm
   - Second order cone programs (SOCP)

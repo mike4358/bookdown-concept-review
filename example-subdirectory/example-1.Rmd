@@ -6,3 +6,15 @@ example of splitting rmd files into smaller chunks & calling from others
   E=mC^2
   (\#eq:example-1-equation)
 \end{equation}
+
+### Example of equation reference
+
+Equation \@ref(eq:exampleequation)
+
+### Example of section reference
+
+Section \@ref(examples-section-3-subsection-1)
+
+### Example of cross-reference (hyperlink)
+
+[Normal Distribution](#prob-continuous-dist-normal)

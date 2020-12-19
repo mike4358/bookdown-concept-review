@@ -8,6 +8,9 @@
 - Positive semidefinite/positive definite
   - relation to cholesky (psd always cholesky decomposible)
   - how can i tell if psd
+  - relation to invertibility
+- inner product
+- outer product
 - LU decomp
 - Cholesky decomp
   - Application for monte carlo simulation for correlated random normal
@@ -19,10 +22,15 @@
 - Singular Value Decomposition (SVD)
   - used in power meth for eigen
 - Principal Components Analysis (PCA)
+  - related to data analysis application
 - Symmetric Matrix
 - L1 l2 norms
 - Basis
+- linear transformation
+- spanning
+- orthogonal projection
 - Invertible Matrix Theorem
 - Gram-schmidt orthonormalization
 - matrix rank, full rank
+- jacobian matrix, hessian
 - commutable matrix: AB=BA, what if one of them is identity matrix I?

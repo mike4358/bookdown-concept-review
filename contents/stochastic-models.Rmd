@@ -58,7 +58,7 @@ Topic list:
   - example: black scholes pde
   - relation to Diffusion processes
   - drifted BM
-  - OU - solution, relate to simulation
+  - OU - solution, relate to simulation, stoch calc
   
 - stoch calc
   - box calc

@@ -332,7 +332,7 @@ slides 7
 - implied deterministic vol
 - stoch vol models (relate to implied vol)
   - lognormal (Hull-white)
-  - OU (stein-stein, scott)
+  - OU (stein-stein, scott), related to stoch models, calc?
   - CIR (heston)
 - uncorrelated stoch vol
   - simulate paths of Y (vol) only
