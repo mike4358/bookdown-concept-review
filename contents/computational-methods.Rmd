@@ -7,3 +7,10 @@
 - pricing with cosine method
 - stratified sampling
 - Kalman filtering
+  - related to hidden markov model
+  - gaussian distribution assumption
+  - hidden (unobservable) continuous process evolves
+  - extended kalman filter
+    - ex. GIR defines cycles using residual on extended kalman filter of US GDP, wages taken from US tax dat
+  - unscented kalman filter
+  - applications to model fitting?

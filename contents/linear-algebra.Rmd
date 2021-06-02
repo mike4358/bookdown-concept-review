@@ -4,33 +4,94 @@
 - Orthogonal is when dot product is 0
 - Corr is cosine of angle between them in Euclidean
 - Determinants of matrix
-- Characteristic equation of matrix 
+  - uses
+  - special cases like lower triangular?
+- Cramer's rule
+- Characteristic equation of matrix
+  - use: 
+- characteristic polynomrial
+- multiplicity
 - Positive semidefinite/positive definite
   - relation to cholesky (psd always cholesky decomposible)
   - how can i tell if psd
   - relation to invertibility
 - inner product
 - outer product
+- basis
+  - definition: set of vectors such that linearly indep, span the whole vector space
+  - change of basis
+    - what is the use?
+- application to markov chains
+
+- inversion
+  - invertible matrix theorem
+
 - LU decomp
-- Cholesky decomp
-  - Application for monte carlo simulation for correlated random normal
-- PDP decomp
+  - book section 2.5
+  - L is m x m lower triangular
+  - U is upper right triangular echelon
+  - algo is to apply echlon form steps to identity matrix
+  - relate to QR factorization
+  - uses: Cholesky decomp
+    - 
+    - relate to positive definite
+    - do proof on book page 492: Q7
+      - A pos def iff A = RTR
+      - QR factorization + diagonalization
+    - algo to produce:
+    - Application for monte carlo simulation for correlated random normal (chol decomp of )
+- PDP-1 decomp
+  - diagonalization
+  - properties
+  - book section 5.3
+  - for square matrices
+  - diagonal matrix representation theorem
+  - P is linearly independent eigenvectors of A
+    - eigenvalues can't repeat
+  - D is corresponding eigenvalues
+  - algorithm to compute
+  - uses: decouple dynamical systems, spectral decomposition, cholesky
+  - grad school?
+  
 - QR decomp
+  - book section 6.4
+  - matrix factorization
+  - Q is orthonormal basis
+  - R is square upper triangular
+  - used in least squares and eigenvalue finding
+  - relate to gram-schmidt, LU factorization
+  - algo: 
 - UDU decomp?
-- Diagonalization
-- Eigenvalues & Eigenvectors: needs square
+  - LDL?
+  - where from?
+- Eigenvalues & Eigenvectors
+  - needs square
+  - how to find
+    - eigenvalues: det(A-lamI)
+    - solve eigenvectors for each eigenvalue
 - Singular Value Decomposition (SVD)
   - used in power meth for eigen
+    - relate to applications development
+    - inverse power method
 - Principal Components Analysis (PCA)
   - related to data analysis application
 - Symmetric Matrix
 - L1 l2 norms
-- Basis
 - linear transformation
 - spanning
+  - spanning set theorem
 - orthogonal projection
 - Invertible Matrix Theorem
 - Gram-schmidt orthonormalization
 - matrix rank, full rank
-- jacobian matrix, hessian
+- jacobian matrix
+  - application to stoch calc
+  - lower triangular determininant
+- hessian
 - commutable matrix: AB=BA, what if one of them is identity matrix I?
+
+
+
+
+
+- 

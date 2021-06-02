@@ -9,23 +9,151 @@
   - Classes
   - Mutex & parallelizing computation
   - Rebuild examples in Xcode & VS Code
+  - virtual function
+  - virtual class
+  - vectors see hackerrank compare the triplets
+  - for loop syntax (i in end condition)
+  - no need for semicolons after for loops, if statements, while
   
 - Python
   - Decorator
   - Generator
+    - do generator example
+    - https://www.hackerrank.com/challenges/morgan-and-a-string/problem
+    - https://realpython.com/introduction-to-python-generators/
+    - generator object
+    - can call next on generator
   - Jupyter
-  - Immutable
+  - Immutable (tuples, etc.)
+  - if
+    - https://www.w3schools.com/python/python_conditions.asp
+  - bitwise operators
+    - https://www.w3schools.com/python/python_operators.asp
+  - data types
+    - remember integer division is n / 2.0 
+    - list
+      - counting all identical
+      - adding elements to list
+        - 'insert' method requires index for where to insert a single item
+        - 'append' method adds single item to end of list
+          - if appending another list, it becomes list of lists (capstone coding test)
+        - 'extend' method appends list (or any other iterable object) to another list
+          - can append a tuple to a list
+        - '+' operator returns new list (join two lists)  https://stackoverflow.com/questions/12453580/how-to-concatenate-items-in-a-list-to-a-single-string
+      - removing elements from list
+        - 'pop' method removes single item based on index
+        - 'del' keyword deletes the whole list, but can be used to remove items by index
+          - ex. del thislist[0]
+        - 'clear' method empties list
+        - remove multiple done by list comprehension https://stackoverflow.com/questions/1157106/remove-all-occurrences-of-a-value-from-a-list
+      - counting
+        - only counts non-overlapping sequences '010' example
+      - sorting
+        - default case sensitive
+        - 'sort' method has arg (key = str.lower) that forces insensitive
+      - copying
+        - 'copy' method
+        - list constructor
+      - subsetting lists
+        - https://stackoverflow.com/questions/19252301/creating-a-new-list-with-subset-of-list-using-index-in-python
+        - x[0:1] returns only first element, x[0:2] returns first 2
+      - unique elements from 'set' function (see hackerrank pangrams)
+      - element-wise comparison of two lists
+        - see zip ([x >= y for x, y in zip(A, B)])
+        - see enumerate
+      
+    - list comprehension
+      - https://www.w3schools.com/python/python_lists_comprehension.asp
+      - ex. subtract number from each element of list: https://stackoverflow.com/questions/4918425/subtract-a-value-from-every-number-in-a-list-in-python
+      - removal of all mins from list: https://stackoverflow.com/questions/1157106/remove-all-occurrences-of-a-value-from-a-list
+      - cut the sticks example in hackerrank
+      - remove element from list
+      - multidimensional list: x[1][1]
+        - slicing: https://stackoverflow.com/questions/17277100/python-slicing-a-multi-dimensional-array
+        - https://www.hackerrank.com/challenges/matrix-rotation-algo/problem
+        
+    - tuple
+      - ordered, unchangeable, allow duplicates
+      - round brackets
+    - set
+      - curly brackets or 'set' constructor (ex. {1, 2 ,3} vs set((1, 2, 3)))
+      - undordered, unindexed, no duplicates
+      - can contain different data types
+      - unchangeable, but extendable 
+        - 'add' method for one item
+        - 'update' method for extending by another set (or list, dictionary)
+        - 'union' method takes union
+        - 'intersection_update' method takes intersection
+        - 'intersection' same as above but creates new set
+        - 'symmetric_difference_update' method returns items not in both sets
+        - 'symmetric_difference' method makes new seth
+        - 'difference' method
+      - removing
+        - 'remove' method throws error if missing
+        - 'discard' method throws no error
+        - 'pop' method removes last item
+        - 'clear' method empties the set
+        - 'del' keyword deletes entirely
+      - can use 'in' to check if variable in set
+      - can loop through set
+      
+    - dictionary
+    - strings
+      - strings are arrays, so they are loopable
+      - can use 'in' or 'not in' to search within string
+      - 'upper' and 'lower' methods
+      - concat using '+'
+      - 'format' method allows variables of non string type to be converted to string and inserted in string
+      - https://www.w3schools.com/python/python_strings_methods.asp
+      - https://www.w3schools.com/python/ref_string_split.asp
+      - https://www.geeksforgeeks.org/python-split-string-into-list-of-characters/
+      - concat: ''.join(my_string)
+      - find (see hackerrank in string example), be careful with starting and ending indices
+      - string comparison: 'ab' < 'ba - how is it working
+        - https://stackabuse.com/comparing-strings-using-python/
+        - https://en.wikipedia.org/wiki/Lexicographic_order
+```{python, eval=FALSE}
+a = 'aaab'
+b = 'aaac'
+print(a > b)
+```
+  
+      
+      
   - Range vs. xrange, iterators, list(range()), https://www.geeksforgeeks.org/range-vs-xrange-python/
+    - starts at 0
+    - second arg goes to n-1
+    - backward range range(m-2, -1, -1)
+  - recursion
+    - https://www.hackerrank.com/challenges/reduced-string/problem
+  - mod %
   - Re-write EWMA in python
   - Pandas
   - NumPy
   - SciPy
   - tensorflow
   - Importing, namespaces
+  - global vs. local variables (ex. )
+    - global created outside function, but usable inside unless overridden by local
+    - local created inside function
+      - to create global variable inside function use 'global' keyword 
+      - this overrides any preexisting same-named global variable
+  - zip
+  - enumerate
+  - map
+  - next
+    - when is it used
+    
+    
+  - classes in python
+    - do example
 
 - R
   - packrat
   
+- UNIX
+  - asked by several interviewers
+
 - Algorithmic Complexity (maybe make it's own chapter)
   - Big-O notation
   - $\Omega$ notation
@@ -34,36 +162,33 @@
   - Horner’s algorithm: rewrite sum as recursion
   - Moving average: reuse previously computed average
 
+- binary search
+
 - Sorting Algorithms
   - Get best, worst, average, complexity, etc.
   - Insertion sort: inject new element one at a time. $W(n)=\Omega(\sum_{i=1}^{n} i)=\Omega(n^2)$
   - Merge sort: divide into sub arrays, sort them, then merge them. Uses recursion, nlogn
   - Quick sort: pick element, divide array into sub arrays less and greater, repeat on sub arrays. n^2
   - Bubble sort: pairwise ascending swaps, repeat globally until no swaps over the pass
+  - bucketsort?
+  
 - Equal probability character example
   - Search array of zero then non zero numbers: go by factor of 2, on first hit search in between by halves. Logn
 
 - Linked-lists
+- hash maps (java in capstone interview)
+- bitwise operations
+  - binary in general (bin() in bython), flipping bits in hackerrank:  https://stackoverflow.com/questions/43024351/convert-an-integer-into-32bit-binary-python, https://stackoverflow.com/questions/8928240/convert-base-2-binary-number-string-to-int
+  - '{:032b}'.format(n)
+  - xor (it's ^ operator in python, bitwXor in R, see hackerrank max xor example)
+    - https://en.wikipedia.org/wiki/Bitwise_operation#XOR
+- returns for functions
+- sliding window technique
+  - https://stackoverflow.com/questions/8269916/what-is-sliding-window-algorithm-examples
+  - https://medium.com/outco/how-to-solve-sliding-window-problems-28d67601a66
+  - https://www.hackerrank.com/challenges/bear-and-steady-gene/problem
+- tail recursion
+- suffix tree
+  - https://en.wikipedia.org/wiki/Suffix_tree
+  - https://www.hackerrank.com/challenges/string-function-calculation/problem
 
-
-
-- Applications Programming
-  - Lecture 1: using gurobi through python
-  - Lecture 2-4: reading text files in c (fopen, atoi, fscanf), memory allocation
-    - see HW 1
-  - Lecture 4-9: robust arbitrage model, generate scenarios, writes text for LP, calls python
-    - see HW 2
-  - Lecture 9: user forms in excel
-  - Lecture 10: VaR of robust arbitrage model, see pdf for derivation, need error function (erf)
-  - Lecture 11-14: solve MVO with quadratic program (relate to optimization)
-    - see HW 3
-  - Lecture 15-17: factor models, statistical factor models, PCA, power method for numerically computing eigenvalues, jacobi method (relate to data analysis & linalg)
-    - uses c++ classes for power method routine
-    - see HW 4 & 5
-  - Lecture 18-21: multithreading in Windows
-    - see HW 5 & final project
-  - Lecture 23-24: optimal trade execution (relate to optimization)
-    - see final project
-  - Lecture 24: some factor model stuff in c
-  - Lecture 25: dlls
-  - Review memory alloc, pointers * ** &, ++ iteration, -> operator, cores vs. threads, header promises functions from cpp file

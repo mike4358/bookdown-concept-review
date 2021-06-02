@@ -139,6 +139,8 @@ Suppose $\left\{X_n\right\}_{n\ge1}$ is a sequence of independent and identicall
 
 ## Central limit theorem {#prob-clt}
 
+- sum of independent RVs converge in distribution to normal distribution
 - convergence in distribution
+- proof from ross
 
 applied to sums of random variables

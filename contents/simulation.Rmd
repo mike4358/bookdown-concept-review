@@ -114,7 +114,7 @@ SHOW PROOF: requires solving for a constant $a$
 
 ### correlated normal
 
-- cholesky decomp of covar matrix
+- cholesky  of covar matrix
 - multiply that by vector of std indep normals to get vector of correlated
 - application to correlated brownian motions (related to stoch calc)
 - example of portfolio valution with correlation

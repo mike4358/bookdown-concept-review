@@ -24,6 +24,12 @@ This book is designed for review of concepts.
 TO DO:
 
 - map class notes
+  - implied vol
+  - term structure
+  - hirsa stuff
+  - probability theory
+  - linear algebra
+  - calculus
 - map homework
 - map tests
 - import green book

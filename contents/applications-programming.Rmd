@@ -1,0 +1,21 @@
+# Applications Programming {#app-prog}
+
+- Lecture 1: using gurobi through python
+- Lecture 2-4: reading text files in c (fopen, atoi, fscanf), memory allocation
+  - see HW 1
+- Lecture 4-9: robust arbitrage model, generate scenarios, writes text for LP, calls python
+  - see HW 2
+- Lecture 9: user forms in excel
+- Lecture 10: VaR of robust arbitrage model, see pdf for derivation, need error function (erf)
+- Lecture 11-14: solve MVO with quadratic program (relate to optimization)
+  - see HW 3
+- Lecture 15-17: factor models, statistical factor models, PCA, power method for numerically computing eigenvalues, jacobi method (relate to data analysis & linalg)
+  - uses c++ classes for power method routine
+  - see HW 4 & 5
+- Lecture 18-21: multithreading in Windows
+  - see HW 5 & final project
+- Lecture 23-24: optimal trade execution (relate to optimization)
+  - see final project
+- Lecture 24: some factor model stuff in c
+- Lecture 25: dlls
+- Review memory alloc, pointers * ** &, ++ iteration, -> operator, cores vs. threads, header promises functions from cpp file

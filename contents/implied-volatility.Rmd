@@ -1,12 +1,436 @@
 # Implied Volatility {#impvol}
 
-- Local volatility models
+- lecture 1
+- SVI Parameterization for smile at fixed expiration
+- static vs. dynamic replication
+- efficient markets hypothesis/model
+  - modeling share of stock
+  - one step up/down model
+  - law of one price
+    - model relates risk to return
+    - assumption: identical unavoidable expected risks have identical expected returns
+  - reducing/avoid risk
+    - dilution w/ riskless bond
+      - linearly weight between stock and bond
+      - sum up expected returns
+      - find that magnitude of excess return proportional to risk
+      - relate to stoch calc market price of risk?
+    - diversification
+      - if one could accumulate so many stocks vol approaches zero
+      - then sharpe ratio goes to 0
+      - return of port would equal risk free rate
+    - hedging
+      - allows for a market risk and stock-specific risk
+      - after chugging, obtain CAPM
 
+- derivative valuation by replication
+  - relate to stoch calc, foundations?
+  - decompose stock & bond via lin alg to port that pays 0 or 1+rt in either end state
+  - option price depends on mixture of stock and bond 
+  - numeraire
+    - relate to stoch calc
+    - use: convert bonds
+  - static replication (lecture 2)
+    - little model risk
+    - ex. put call parity
+    - collar
+    - piecewise linear payoff function
+    - down and out call with strike = barrier
+      - scenario 1 not hit - pays off like forward
+      - scenario 2 hit -worth zero, DO REST
+  - dynamic replication
+    - taylor series expand
+    - delta hedge
+    - value of delta hedge portfolio is quadradtic in delta S DO MATH
+    - example if known future volatility
+      - can know pnl deterministically --> it's riskless and has to earn 0
+      - show this and do no arb args
+      - show relation to black sholes
+    - example of implied vs realized vol (lecture 3)
+      - do math
+      - when buying option and hedging it, need realized vol to be higher than implied
+      - replicate chart
+    - example of betting on pure volatility
+      - need log contract (payoff = -lnS, delta -1/S) WHY
+      - hedge with $1 of stock
+  - variance swap
+    - payoff: Notional * (realized var - agreed var)
+    - UNDERSTAND: relation between var and vol payoff
+    - valuation by replication: own and hedge a log contract, payoff = -lnS
+    - log replication
+      - assume r = 0
+      - BS shows call payoff vega depends on vol param and S
+      - construct a portfolio of calls at all strikes from 0 to infty such that the deriv wrt var is indep of S
+      - understand differentiation of the integral
+      - do a change of variable x = K/S
+      - want the deriv to be indep of S, so solve for function of K: 1/K^2
+        - SHOW
+      - this portfolio is short payoff of log contract and long payoff of fwd
+        - SHOW
+      - use puts below and calls above some S*
+      - show payoff of portfolio
+      - in black scholes world prior to expiry 
+        - show why formula
+      - do the cumulative discrete pnl steps
+        - this shows hedged portfolio gets value of variance
+      - relaxed case: continuous diffusion (vol can change) (lecture 4)
+        - show the replication
+        - risk neutral expectation
+        - ultimately end up with variance in terms of stock, call and put prices
+    - replicate with linear payoffs in calls and puts that dominate "Fair variance in a skew"
+    - problems with replication
+      - continuum doesn't exist
+      - jumps
+        - can move price out of range of replication
+        - jumps contribute to variance with J^3 term too, asymmetric term, do math
+  - volatility swap
+    - easy payoff definition: Notional * (realized vol - agreed vol)
+    - vol thought of deriv of var
+    - value using portfolios of variance swaps
+    - do the expansion
+      - shows fair vol is smaller than sqrt of variance and depends on vol of variance
+  - vix index
+    - defined to be sqrt of variance swap
+    - do math
+    - doesn't assume black scholes, but does assume continous underlier movement
+    - uses option prices not implied vols
+
+- black scholes and sharpe ratios
+  - assumptions
+  - SDE for option price itself
+    - mu C and vol C
+  - ultimately relate sharpe of call to sharpe of stock
+    - relate to law of one price
+    - relate to stoch calc
+    - another way to dreive the bs pde
+  - manipulate bs formula
+    - time and vol appear together when written in asset prices
+    - enter in estimate for total variance?
+    
+- pnl hedging (lecture 5)
+  - ultimately used as model to show payoff paths of delta hedged option portfolio
+  - captures implied realized diff
+  - start with discrete time steps of delta hedge portfolio evolution
+    - pay attention to cash account value
+    - pay attention to delta for hedging vs. delta symbol for change in time
+  - equate option price with final account value
+  - do some integration by parts (relate to calc)
+  - backwards ito integral
+    - what is it and why?
+    - used for changes in delta for hedging
+  - hedging strategies (lecture 6)
+    - hedging with known realized (i.e. have crystal ball)
+      - requires black scholes logic
+      - under the various assumptionsm (list them), results in deterministic pnl
+      - do the math to show the SDE of the pnl process
+      - pnl process like ZCB in that final value known but process to get there random
+      - if # rehedgings too low pnl won't be deterministic
+      - bounds
+        - decompose pnl process into two parts
+        - upper bound:
+        - lower bound: comes when vega largest - prove
+    - hedging with implied, evolving at realized
+      - similar discrete steps except replace $\Delta_r$with $\Delta_i$
+      - use ito's lemma to reformulat change in pnl process SDE
+      - cancel out dS terms using delta hedging
+      - use black scholes pde WHY get final SDE
+      - integrate to get pnl process
+      - show pnl process dependence on gamma
+      - pnl process is related to implied vs. realized, but still random
+    - hedging at arbitrary constant volatility (lecture 7)
+      - still start off with discrete case
+      - still can cancel some S terms
+      - homework (which one) shows that the pnl process is related to spread between realized and hedge vol
+      - lower bound: Vh - Vi when realized vol > hedge vol (WHY, what happens if r < h)
+      - upper bound: path dependent and depends on S and gamma
+        - show full formula
+        - show maximization
+          - S = K discounted
+        - blah blah show rest to show path of maximal pnl
+  - expected profit
+    - hedging at implied
+    - hedging at realized
+      - vary number of hedgings
+      - reduce standard dev of pnl paths by sqrt n hedgings
+    - when not hedging at realized
+      - no reduction in std dev of pnl paths WHY
+    - hedging at realized but mu != r
+      - reduction still happens
+    - not hedging at realized and mu != r
+      - asymmetric distribution WHY
+  - discrete hedging error analysis
+    - hedge at realized
+    - start with definition of hedging error HE
+    - delta shares calculated from continuous model, but being traded discretely
+    - blah blah
+    - ultimately show variance of hedging error distribution
+    - can be simplified a little further and then approximated
+    - analyzing the simplification
+      - sampling volatility discretely is subject to error (show formula WHY)
+  - impact of transaction costs
+    - TCs lower fair value of option if buying, raise cost if selling
+    - rebalance at regular intervals
+      - trade off standard dev in pnl for higher TCs
+    - rebalance with delta trigger
+      - tries to optimize previous tradeoff
+      - extreme case of high trigger and high costs
+        - bimodal result comes from trigger not hit and trigger hit outcomes
+    - analytical approximations to transaction cost
+      - start with discrete hedging error
+      - add a cost for delta hedging
+        - positive for ups and downs (non-linear)
+    - pde model of transaction costs
+      - hoggard, whaley, and wilmott
+      - start with standard elimination of first-order S term
+      - relate to gamma then incorporate cost
+      - blah blah
+      - end up with modified bs equation with extra non-linear term proportional to gamma
+      - Leland - bs with reduced volatility that accounts for costs
+        - when sell option ask for more b/c hedging it will cost you
+        - understand approximation
+        - comparison to simulations (lecture 8)
+
+- characteristics of implied vol surface
+  - tends to rise fast the fall slowly
+  - surface highly correlated - small numbers of principal components
+  - term structure skew depends on x axis: log moneyness vs. log moneyness scaled by vol
+  - etc. (slide 28)
+  - for interest rates usually higher implied vols for lower rate strikes b/c rates tend to move normally as they get low
+  - can plot smile against delta
+    - more invariant
+    - gives hedge directly
+    - relate to endogeneity work with Carlo
+    - compare imp vol of different expirations and strikes
+    - what's interpretation of d2 - # std dev stock price must move to expire ITM
+  - using wrong quoting convention can distort
+    - ex if underlying process actually ABM, using GBM
+  - the meaning of delta
+    - do the math start with GBM then show function (natural log) of GBM
+    - show prob of S > K at expiry
+    - in particular show that it's approximately risk neutral prob of option finishing ITM
+  
+  - delta and strike relationship
+    - risk reversal: difference in vol between OTC 25DC and OTC 25DP
+    - show APPROX relationship of moneyness (lnS/K) and delta
+      - set r=0, use formula for BS delta
+      - set S=K to show that delta depends on vol and ttm
+      - assuming vol is 20% and ttm is 1yr, delta close to 0.54
+      - for slightly out of money, DO MATH to show delta goes down 2bps for every 1% strike moves out of money
+        - therefore, 50 to 25 delta is about 12-13% move in strike price
+    - show more general version of this where % change in strike is related to change in delta
+      - important: % move in stock price / sqrt of annual variance
+      - recreate strike vs. delta chart (page 38)
+  
+  - no arbitrage bounds on smile
+      - motivating example with bond yields
+      - 1. call worth more than forward
+      - 2. deriv of C wrt K is negative for call, positive for P wrt K
+        - puts limits on slope of smile independent of model
+        - do inequality example on slide 43 for call
+        - as ttm goes to zero, slope steepness bounded by order
+        - as ttm goes to infty, slope can decrease with ttm no more slowly than 1/tau
+      - 3. gamma positive for both call and put
+    
+  - behavioral reasons for skew (lecture 9)
+    - slide 26
+    - empirical historical behavior in options markets suggest skew
+    - expectations in future changes of vol give term struct
+    - support or resistance levels
+    - xs corr expectation changes for index options
+    - dealers tend to be short - providing to investors wanting downside protection
+  
+  - surface modeling choices
+    - pick SDE of underlying
+      - BS
+      - local vol model: vol not constant like BS, but a deterministic function of S
+        - non-parametric
+        - main action is to numerically calibrate the function to match the implied vol surface observed in the market
+        - function may be driven by leverage effect: lev makes vol increase as stock price moves lower SHOW
+      - constant elasticity of variance (CEV) model: like GBM but there's a power on the S term in the stochastic part
+        - parametric
+        - cannot fit arbitrary smile
+      - stochastic volatility models
+        - vol has its own SDE
+        - corr between vol and S processes, assumed constant, but in reality that is stochastic too
+        - can't just hedge with stock alone, also need another option to hedge
+      - jump-diffusion models: allows for discontinuities in underlying
+        - if finite number of jumps of known size, can dynamically replicate payoff using finite number of options, stock, and bond, therefore getting risk-neutral pricing (relate to stoch calc)
+        - if arbitrary number of jumps, can't get risk-neutral
+      - mixing models
+      - variance gamma models
+    - model surface directly
+    - model-less models (splines?)
+  
+  - problems caused by the smile
+    - incorrect hedge ratio
+      - causes variance in the pnl of delta hedged option holding
+      - do the approximate greek-based impact of mishedge distortion at each step
+    - errors in valuation of exotic options
+      - ex. digital option approximation via call spread
+      - b/c of the skew slope the call spread approx adds value
+      - show the approximation
+
+- implied distributions and static hedging (lecture 10)
+  - inverses the question: what risk-neutral stock distribution recovers the smile
+  - toy example of state security pi that pays off $1 only when stock is in state i of N (discrete outcomes)
+    - arrow-debreu security
+    - pseudo-probabilities - define
+    - market completeness
+      - relate to stoch calc
+      - one state-contingent security for each of the discrete outcome states s.t. spans space of future payoffs
+    - continuous notation
+      $$V\left(S,t\right)=e^{-r\left(T-t\right)}\int_0^{\infty}p\left(S,t,S',T\right)V\left(S',T\right)dS'$$
+    - example for European call
+      - introduce indicator function (Heaviside - relate to calc)
+      - rewrite call value as integral across all future states & indicator (steps up at 0) function
+      - allows to statically replicate any european-style payoff with ZCB, forwards, calls, & puts
+      - can't be used to say anything about evolution of stock on way to expiration
+        - not useful for determining dynamic hedges
+    - indicator (Heaviside) & Dirac Delta functions
+      - Dirac delta function is deriv of heaviside
+      - zero everywhere except x = 0
+      - at x = 0, it's value is infinite
+      - integral over all ex is 1
+      - show notation
+    - breeden-litzenberger formula
+      - second deriv wrt K of call prices is risk-neutral prob distribution
+      - SHOW MATH
+      - start with integral notation of call value
+      - re-write with heaviside
+      - take deriv wrt K twice
+      - relate 2nd deriv to butterfly spread/state contingent security (get familiar with limits)
+      - for calls, show limits of partial wrt K as S -> infinity and 0
+      - show for puts as well
+    - relate to code with Carlo/make functionality to pull from web & interpolate in delta-strike space
+
+- strong static replication
+  - see lecture 2 stuff on general static replication
+  - doesn't require option theory, B-S, etc. Just requires that options are actually honored
+  - USE: can value European options of arbitrary payoffs
+  - use here is to express option value as probability-weighted payoff across all stock prices, replacing density with the one implied from breeden-litzenberger
+    - see Slide 25
+    - puts for strikes below A
+    - calls for strikes above A
+    - replacement happens in 3rd line
+    - UNDERSTAND: integration by parts step
+    - list (& prove) boundary conditions of option prices & their derivs. Use them to re-express the formula after integration by parts
+    - resulting express is combination of ZCB, forward on the stock, and calls & puts (on a continuum)
+  - intuition
+    - normally think of current (arbitrary payoff function) option value as integral over terminal payoff using probability weights
+    - alternatively can think of option value as integral over call and put prices with different strikes (__replication__)
+    - requires options to be offered on a continuum
+    - works even if there's a skew
+  - ex. Quadratic Payoff European Option
+    - strike B
+    - payoff: S x max(S-B, 0)
+    - method: replicate with vanilla calls with strikes starting at B, successively adding more of them
+    - q(K) is unknown density of calls
+    - BLAH BLAH DO MATH
+    - ultimately end up with the value of the quadratic call being a call + a continuum of calls
+    - next, a smile is assumed to follow a given functional form
+    - convergence analysis of how many options needed in the continuum to come close to theoretical fair value based on infinite options in the continuum
+    - convergence speed depends parameterization of the smile functional form
+      - positive skew requires more strikes, negative skew requires fewer
+
+- weak static replication
+  - requires model & assumption about future smile
+  - costs of replication and transaction are embedded in market prices of standard options in replication
+  - ex. assuming black-scholes
+    - ln(S_T/S_t) (i.e. log prices changes) are normal with mean r(T-t) - 0.5sig^2(T-t) PROOF
+    - normalizing the changes (demean, divide by vol) results in standard normal RV
+    - DO MATH: infinitesimal percent change
+    - express discounted call option value as integral over black-scholes risk-neutral density (slide 35)
+  - ex. barrier options
+    - relate to hirsa pide stuff?
+    - down-and-out call, zero interest rates and dividends, strike K, barrier B, current stock price K > S > B
+      - trick: choose reflected S' (reflect about B) s.t. S and S' have equal probability to get to B for any tau (T-t)
+        - once at B for arbitrary tau, both paths from S and S' have equal probability of producing a subsequently in-the-money path
+        - UNDERSTAND: cancellation intuition
+        - in GBM world, reflect must be log reflection REQUIRES B-S Assumption
+        - density of getting from S to S_tau???
+          - solve for alpha
+        - show boundary conditions
+          - ln(S/B) = ln(B/S') --> S' = B^2/S
+        - non-zero risk-neutral drift
+          - re-solve for alpha in terms of mu
+          - superposition of solutions/densities? what's this mean?
+            - https://en.wikipedia.org/wiki/Method_of_images
+    - down-and-out call with S > K = B (Lecture 11, page 18)
+      - specific example where can replicate with stock and bond alone
+      - if S ever goes down to B, then option value 0
+      - replicate with forward FORMULA
+        - why requires continuity of stock
+        - understand intuition, what's the strategy? enter forward at t=0 and reference at K, and forward value F > 0, then if S drops to K, exit forward?
+    - up-and-in put with S < K = B
+      - requires S hit barrier before option has value, paths that don't touch barrier are worthless
+      - need security that is worthless if no touch barrier, and has vanilla put value on barrier
+      - trick is call with strike on barrier 
+      - if interest rates and dividends are 0, then call price == put price when S=K=B
+      - so strategy is buy call at beginning, and on barrier hit, use call proceeds to buy put
+    - down-and-out call with K > B, S free
+      - assume r and dividends 0
+      - assume brownian motion for S
+      - trick: define K' = B - (K-B), equidistant reflection across B
+      - portfolio W of call struck at K and put struck at K' has payoff of call struck at K and have 0 value when S = B (call and put offset each other)
+        - K' solved for to make the the call and put offset using the linearity of the payoffs
+    - down-and-out call, exotic knockout
+      -
+    - up-and-out call with high gamma
+      -
+      - replication accuracy
+
+
+- binomial model (page 32)
+  - cox-ross-rubinstein (CRR)
+  - jarrow-rudd
+  - BS pde
+  - time-dependent deterministic vol
+    - calibration
+    
+- local volatility models (Lecture 12)
+  - binomial
+  - dupire's equation for local volatility
+    - relate to hirsa?
+    - poor man's derivation in binomial
+    - more rigorous formal proof
+  - relationship between local and implied vols
+    - see homework problem
+    - harmonic mean
+  - stochastic volatility inspired (SVI) parameterization
+    - gatheral, 2004
+    - formula
+  - problems and benefits of local vol models
+    - 
+  - sticky local vol model
+      
 
 ## Stochastic volatility models {#impvol-stoch-models}
 
-### SABR model {#impvol-stoch-models-SABR}k
+- lectures 16-20
+- SDEs for stoch vol
+
+- intuition from black-scholes
+
+- intuition fom local vol
+  - pertubatively add stochasticity
+  - stochastic local vol
+
+
+- SABR model {#impvol-stoch-models-SABR}
+
+- hedging in stoch vol model
 
 ## Jump-diffusion models {#impvol-jump-diffusion}
 
-
+- lectures 20, 23, 25
+- features
+- jumps alone
+  - poisson distribution of jumps
+- jumps plus diffusion
+  - merton jump-diffusion model
+    - pde
+  - trinomial tree jump-diffusion
+  - valuing call option
+    - what are required assumptions? BS?
+  - jump-diffusion smile
+    - characteristics

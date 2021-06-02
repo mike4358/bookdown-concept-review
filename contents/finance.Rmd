@@ -1,6 +1,6 @@
 # Finance {#finance}
 
-- VaR (historical, analytical, marginal, component, conditional?)
+- VaR (historical, analytical (see Coding Stuff email example), marginal, component, conditional?)
 - Put-call parity: $c+K^{-r\tau}=p+S-D$
   - $c-p=S-K^{-r\tau}$
 - Black-Scholes PDE & its derivation
@@ -237,4 +237,3 @@
     - intensity models
       - defaults come as surprise and just happen (jump?)
       - examine matlab code - lam_0
--->

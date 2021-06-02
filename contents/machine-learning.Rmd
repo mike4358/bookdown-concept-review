@@ -1,5 +1,8 @@
 # Machine Learning {#ml}
 
 - coursera course
+  - see subhadeep (nebula) & yuejing (squarepoint)
+  - convolutional neural networks
+  
 - pytorch
 - tensorflow

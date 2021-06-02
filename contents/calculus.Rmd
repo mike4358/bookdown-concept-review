@@ -5,11 +5,15 @@
 - Chain rule
 - Integration by substitution (u-substitution)
 - Substitution by definite integrals
-- Integration by parts $\int udv=uv-\int vdu$
+- Integration by parts
+  - how to recognize when to use
+  - $\int udv=uv-\int vdu$
   - Ex. integral of $\ln{x}$
   - ex. application to compute variance of integral of BM
   - prob in poisson process
+  - ex. static replication Implied vol Lecture 10 Slide 25
 - log rules
+- liebnitz rule (stoch calc)
 - Euler's formula
 - Geometric series - substitution trick
   - Applications: trend weight normalization
@@ -27,3 +31,15 @@
 - polar coordinates (reference box mueller in foundations, normal distribution in prob theory)
 - L'Hopital's rule
 - change of variables
+- harmonic mean
+  - definition
+  - implied vol is harmonic avg of local vol (for short expirations)
+  - used in schweser CFA Level 1 Book 1 for computing average cost of shares over time
+    - ex. $1000 stock each month, $8, $9, $10 over 3 months
+    - normally would find # of stocks bought each month then find total # of shares over 3 months, then use that as weights on 8, 9, 10
+    - harmonic mean can be used instead
+    - notation
+    - relate to geometric and arithmetic
+    - dollar cost averaging?
+  - official CFA Level 1 Book 4
+    - average price multiples

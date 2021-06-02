@@ -137,6 +137,7 @@ HW 1, HW 2
   - could try to max the likelihood directly, but log is taken first
     - log preserves maximization
     - gets rid of exponent
+    - very large/small numbers: https://www.r-bloggers.com/2019/08/maximum-likelihood-estimation-from-scratch/
     - why else?
   - see IEOR_4709_Data_Analysis_2015_Spring_Week01_2 for taking finding max
     - essentially use first order condition for each of the parameters, separately
@@ -772,9 +773,11 @@ Proof_Multiple_Linear_Regression?
       - setup
       - null hyp: all the additional explanatory betas = 0
       - test statistic PROOF
+        - derivation of the formula
       - follows F-distribution PROOF
       - reject null when F large
-      - interpretation 
+      - interpretation
+        - what is it's use?
       - anova - https://en.wikipedia.org/wiki/Analysis_of_variance
     - explanatory variable selection
       - forward selection: start small and add largest F until thresh
