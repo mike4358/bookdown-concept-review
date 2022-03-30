@@ -26,35 +26,51 @@ Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Fig
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
 
-## Section example {#examples-section-1}
+## Python example {#examples-python}
 
-Here's some text in a section. Below are some examples of code chunks:
+Calling python functionality in R chunk:
 
-```{r test-chunk-r, eval=FALSE}
-library(reticulate)
-
-use_condaenv(condaenv = "r-reticulate")
-scipy <- import("scipy")
+```{r, label='test-chunk-r', eval=FALSE}
+scipy <- reticulate::import("scipy")
 scipy$amin(c(1,3,5,7))
 pd <- import("pandas")
 x <- pd$array(c(1,2,3))
 print(x)
 ```
 
-```{python test-chunk-python, eval=FALSE}
-import numpy as np
-import pandas as pd
+Python chunk directly:
 
-x = np.array([1,2,3])
-x = x * 2
-print(x)
+```{python, label='matplotlib-python', eval=TRUE}
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2*np.pi*t)
+plt.plot(t, s)
+
+plt.grid(True)
+plt.show()
 ```
+
+Access variables from `py` variable:
+
+```{r, label='matplotlib-r', eval=FALSE}
+plot(py$t, py$s, type='l', col='blue')
+grid(NULL, NULL, lty=1)
+```
+
+## More examples {#examples-more}
 
 Now here's some math:
 
 $f(k) = {n \choose k} p^{k} (1-p)^{n-k}$
 
 $\Gamma$
+
+\begin{bmatrix}
+1 & 2 & 3\\
+a & b & c
+\end{bmatrix}
 
 And now an equation:
 

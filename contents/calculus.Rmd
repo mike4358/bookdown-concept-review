@@ -13,6 +13,7 @@
   - prob in poisson process
   - ex. static replication Implied vol Lecture 10 Slide 25
 - log rules
+  - for example why ln(x^y) = yln(x)
 - liebnitz rule (stoch calc)
 - Euler's formula
 - Geometric series - substitution trick

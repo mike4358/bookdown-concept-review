@@ -33,13 +33,13 @@
   - algo is to apply echlon form steps to identity matrix
   - relate to QR factorization
   - uses: Cholesky decomp
-    - 
     - relate to positive definite
     - do proof on book page 492: Q7
       - A pos def iff A = RTR
       - QR factorization + diagonalization
     - algo to produce:
     - Application for monte carlo simulation for correlated random normal (chol decomp of )
+      - ex. proof of 2-variable formula
 - PDP-1 decomp
   - diagonalization
   - properties

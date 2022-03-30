@@ -6,3 +6,10 @@
   
 - pytorch
 - tensorflow
+
+- logisitic regression
+- random forest
+- LDA
+- XGBoost
+
+- support vector machine

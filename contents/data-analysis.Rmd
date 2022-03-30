@@ -504,7 +504,7 @@ HW 4
       - do derivation for both (see class notes)
     - generate samples
   - HW4
-
+ - example application: volume volatility based order slicing
 
 
 

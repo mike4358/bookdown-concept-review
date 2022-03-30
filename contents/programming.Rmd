@@ -22,7 +22,11 @@
     - https://www.hackerrank.com/challenges/morgan-and-a-string/problem
     - https://realpython.com/introduction-to-python-generators/
     - generator object
+    - "yield" keyword
+      - controls flow of generator
     - can call next on generator
+    - used to optimize memory
+    - read csv example
   - Jupyter
   - Immutable (tuples, etc.)
   - if
@@ -141,6 +145,8 @@ print(a > b)
   - zip
   - enumerate
   - map
+    - applies function to iterables
+    - examples
   - next
     - when is it used
     
@@ -170,12 +176,17 @@ print(a > b)
   - Merge sort: divide into sub arrays, sort them, then merge them. Uses recursion, nlogn
   - Quick sort: pick element, divide array into sub arrays less and greater, repeat on sub arrays. n^2
   - Bubble sort: pairwise ascending swaps, repeat globally until no swaps over the pass
-  - bucketsort?
+  - bucket sort (bin sort)
+    - average and worst case complexity
+    - use case: input uniformly distributed over a range
+  - comparison sort
   
 - Equal probability character example
   - Search array of zero then non zero numbers: go by factor of 2, on first hit search in between by halves. Logn
 
 - Linked-lists
+  - what are they
+  - why are they used
 - hash maps (java in capstone interview)
 - bitwise operations
   - binary in general (bin() in bython), flipping bits in hackerrank:  https://stackoverflow.com/questions/43024351/convert-an-integer-into-32bit-binary-python, https://stackoverflow.com/questions/8928240/convert-base-2-binary-number-string-to-int

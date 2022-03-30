@@ -271,6 +271,7 @@
       - show the approximation
 
 - implied distributions and static hedging (lecture 10)
+  - INTUITION: options butterfly in limit is arrow-debreu
   - inverses the question: what risk-neutral stock distribution recovers the smile
   - toy example of state security pi that pays off $1 only when stock is in state i of N (discrete outcomes)
     - arrow-debreu security

@@ -17,6 +17,19 @@ github-repo: mike4358/bookdown-concept-review
 # favicon: "favicon.ico"
 ---
 
+```{r, label='python-setup', include=FALSE}
+# be sure to set environment variable RETICULATE_PYTHON to preferred python binary 
+library(reticulate)
+reticulate::use_condaenv(condaenv = "base")
+```
+
+```{r references, eval=TRUE, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
 # Introduction {-}
 
 This book is designed for review of concepts.
@@ -33,15 +46,22 @@ TO DO:
 - map homework
 - map tests
 - import green book
+- make backtester environment
+  - in python! (no on wants R)
+    - particularly get familiar with pandas
+  - get data (like R quantmod)
+  - maybe some reticulate wrappers
+  - libraries
+  - signal generation
+    - machine learning?
+    
+- learn more about portfolio construction techniques for signals
+  - tail risk system
+  - optimization?
 
-```{r python setup, include=FALSE}
-library(reticulate)
-reticulate::use_condaenv()
-```
-
-```{r references, eval=TRUE, include=FALSE}
-# automatically create a bib database for R packages
-knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
-), 'packages.bib')
-```
+- term structure
+  - zero curve bootstrapping
+    - source?
+  - fit term structure models
+  
+  - relationship between GBM and why to log a series

@@ -9,6 +9,7 @@
 - Combinatorics
   - Permutation: $\frac{n!}{n_1!n_2!...n_r!}$
   - Choose formula: $\binom{n}{r} = \frac{n!}{r!(n-r)!}$
+    - intuition
   - Binomial theorem: $(x+y)^n=\sum_{k=o}^{n}\binom{n}{k}x^ky^{n-k}$
     - proof?
   - inclusion/exclusion principle
@@ -49,6 +50,12 @@
 - quantile
 - add ross citation
 [@ross2014]
+- coin flip game
+  - green book
+  - first person to get tails in HT sequence wins
+  - person A goes first, want prob A wins
+  - trick is to see recurrence of state!
+
 
 ## Discrete Distributions {#prob-discrete-dist}
 
